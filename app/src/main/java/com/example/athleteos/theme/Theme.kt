@@ -1,50 +1,44 @@
 package com.example.athleteos.theme
 
-import android.os.Build
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.darkColorScheme
-import androidx.compose.material3.dynamicDarkColorScheme
-import androidx.compose.material3.dynamicLightColorScheme
-import androidx.compose.material3.lightColorScheme
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.platform.LocalContext
 
-private val DarkColorScheme = darkColorScheme(primary = Purple80, secondary = PurpleGrey80, tertiary = Pink80)
-
-private val LightColorScheme =
-  lightColorScheme(
-    primary = Purple40,
-    secondary = PurpleGrey40,
-    tertiary = Pink40,
-
-    /* Other default colors to override
-    background = Color(0xFFFFFBFE),
-    surface = Color(0xFFFFFBFE),
-    onPrimary = Color.White,
-    onSecondary = Color.White,
-    onTertiary = Color.White,
-    onBackground = Color(0xFF1C1B1F),
-    onSurface = Color(0xFF1C1B1F),
-    */
-  )
+private val AthleteColorScheme = darkColorScheme(
+    primary = ElectricBlue,
+    onPrimary = NearBlack,
+    primaryContainer = ElectricBlueDark,
+    onPrimaryContainer = TextPrimary,
+    secondary = SuccessGreen,
+    onSecondary = NearBlack,
+    secondaryContainer = SuccessGreen.copy(alpha = 0.2f),
+    onSecondaryContainer = SuccessGreen,
+    tertiary = WarningAmber,
+    onTertiary = NearBlack,
+    tertiaryContainer = WarningAmber.copy(alpha = 0.2f),
+    onTertiaryContainer = WarningAmber,
+    error = FailureRed,
+    onError = TextPrimary,
+    errorContainer = FailureRed.copy(alpha = 0.2f),
+    onErrorContainer = FailureRed,
+    background = NearBlack,
+    onBackground = TextPrimary,
+    surface = DarkGray,
+    onSurface = TextPrimary,
+    surfaceVariant = CardSurface,
+    onSurfaceVariant = TextSecondary,
+    outline = DividerColor,
+    outlineVariant = DividerColor
+)
 
 @Composable
 fun AthleteOSTheme(
-  darkTheme: Boolean = isSystemInDarkTheme(),
-  // Dynamic color is available on Android 12+
-  dynamicColor: Boolean = true,
-  content: @Composable () -> Unit,
+    content: @Composable () -> Unit
 ) {
-  val colorScheme =
-    when {
-      dynamicColor && Build.VERSION.SDK_INT >= Build.VERSION_CODES.S -> {
-        val context = LocalContext.current
-        if (darkTheme) dynamicDarkColorScheme(context) else dynamicLightColorScheme(context)
-      }
-      darkTheme -> DarkColorScheme
-      else -> LightColorScheme
-    }
-
-  MaterialTheme(colorScheme = colorScheme, typography = Typography, content = content)
+    MaterialTheme(
+        colorScheme = AthleteColorScheme,
+        typography = Typography,
+        content = content
+    )
 }
