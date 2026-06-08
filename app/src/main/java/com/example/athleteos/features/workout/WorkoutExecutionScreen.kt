@@ -3,7 +3,6 @@ package com.example.athleteos.features.workout
 import androidx.compose.foundation.*
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardOptions
@@ -26,6 +25,7 @@ import androidx.navigation3.runtime.NavKey
 import com.example.athleteos.NavigationKeys
 import com.example.athleteos.database.ExerciseLog
 import com.example.athleteos.database.ExerciseSetLog
+import com.example.athleteos.features.home.BottomNavBar
 import com.example.athleteos.theme.*
 import com.example.athleteos.ui.AppLogo
 import kotlinx.coroutines.delay
@@ -53,58 +53,69 @@ fun WorkoutExecutionScreen(
     }
 
     Box(modifier = Modifier.fillMaxSize()) {
-        Column(modifier = Modifier.fillMaxSize().systemBarsPadding().padding(horizontal = 16.dp)) {
-            Spacer(Modifier.height(6.dp))
+        Column(modifier = Modifier.fillMaxSize()) {
+            Column(modifier = Modifier.weight(1f).systemBarsPadding().padding(horizontal = 16.dp)) {
+                Spacer(Modifier.height(6.dp))
 
-            Row(verticalAlignment = Alignment.CenterVertically) {
-                Text("\u2190", color = ElectricBlue, fontSize = 22.sp, modifier = Modifier.clickable(onClick = onBack).padding(8.dp))
-                AppLogo(size = 28.dp)
-                Spacer(Modifier.width(8.dp))
-                Column(modifier = Modifier.weight(1f)) {
-                    val workout = state.workout
-                    if (workout != null) {
-                        Text(getDayName(workout.dayNumber), color = TextPrimary, fontSize = 18.sp, fontWeight = FontWeight.Bold)
-                        Text(workout.name, color = ElectricBlue, fontSize = 14.sp)
+                Row(verticalAlignment = Alignment.CenterVertically) {
+                    Text("\u2190", color = ElectricBlue, fontSize = 22.sp, modifier = Modifier.clickable(onClick = onBack).padding(8.dp))
+                    AppLogo(size = 28.dp)
+                    Spacer(Modifier.width(8.dp))
+                    Column(modifier = Modifier.weight(1f)) {
+                        val workout = state.workout
+                        if (workout != null) {
+                            Text(getDayName(workout.dayNumber), color = TextPrimary, fontSize = 18.sp, fontWeight = FontWeight.Bold)
+                            Text(workout.name, color = ElectricBlue, fontSize = 14.sp)
+                        }
+                    }
+                    IconButton(onClick = { onItemClick(NavigationKeys.Home) }) {
+                        Icon(Icons.Default.Home, contentDescription = "Home", tint = ElectricBlue)
                     }
                 }
-                IconButton(onClick = { onItemClick(NavigationKeys.Home) }) {
-                    Icon(Icons.Default.Home, contentDescription = "Home", tint = ElectricBlue)
+
+                Spacer(Modifier.height(12.dp))
+
+                val workout = state.workout
+                if (workout != null) {
+                    LinearProgressIndicator(
+                        progress = { workout.completionPercentage / 100f },
+                        modifier = Modifier.fillMaxWidth().height(6.dp).clip(RoundedCornerShape(3.dp)),
+                        color = if (workout.isCompleted) SuccessGreen else ElectricBlue,
+                        trackColor = CardSurface
+                    )
+                    Spacer(Modifier.height(4.dp))
+                    Text("${workout.completionPercentage}% complete", color = TextSecondary, fontSize = 12.sp)
                 }
-            }
 
-            Spacer(Modifier.height(12.dp))
+                Spacer(Modifier.height(14.dp))
 
-            val workout = state.workout
-            if (workout != null) {
-                LinearProgressIndicator(
-                    progress = { workout.completionPercentage / 100f },
-                    modifier = Modifier.fillMaxWidth().height(6.dp).clip(RoundedCornerShape(3.dp)),
-                    color = if (workout.isCompleted) SuccessGreen else ElectricBlue,
-                    trackColor = CardSurface
-                )
-                Spacer(Modifier.height(4.dp))
-                Text("${workout.completionPercentage}% complete", color = TextSecondary, fontSize = 12.sp)
-            }
-
-            Spacer(Modifier.height(14.dp))
-
-            if (!state.isLoading) {
-                LazyColumn(verticalArrangement = Arrangement.spacedBy(10.dp), modifier = Modifier.weight(1f)) {
-                    items(state.exercises) { exercise ->
-                        ExerciseCard(
-                            exercise = exercise,
-                            sets = state.exerciseSets[exercise.id] ?: emptyList(),
-                            isExpanded = state.expandedExerciseId == exercise.id,
-                            onToggleExpand = { viewModel.toggleExerciseExpanded(exercise.id) },
-                            onCompleteSet = { set -> viewModel.completeSet(set) },
-                            onWeightChange = { set, w -> viewModel.updateActualWeight(set, w) },
-                            onRepsChange = { set, r -> viewModel.updateActualReps(set, r) },
-                            onCompleteExercise = { viewModel.completeExercise(exercise.id) },
-                            onUndo = { viewModel.undoLastCompletion() }
-                        )
+                if (!state.isLoading) {
+                    LazyColumn(verticalArrangement = Arrangement.spacedBy(10.dp), modifier = Modifier.weight(1f)) {
+                        val groupedExercises = state.exercises.groupBy { it.session }
+                        groupedExercises.forEach { (session, exercises) ->
+                            item(key = "session_$session") {
+                                SessionHeader(session = session)
+                            }
+                            items(exercises.size, key = { index -> exercises[index].id }) { index ->
+                                val exercise = exercises[index]
+                                ExerciseCard(
+                                    exercise = exercise,
+                                    sets = state.exerciseSets[exercise.id] ?: emptyList(),
+                                    isExpanded = state.expandedExerciseId == exercise.id,
+                                    onToggleExpand = { viewModel.toggleExerciseExpanded(exercise.id) },
+                                    onCompleteSet = { set -> viewModel.completeSet(set) },
+                                    onWeightChange = { set, w -> viewModel.updateActualWeight(set, w) },
+                                    onRepsChange = { set, r -> viewModel.updateActualReps(set, r) },
+                                    onCompleteExercise = { viewModel.completeExercise(exercise.id) },
+                                    onUndo = { viewModel.undoLastCompletion() }
+                                )
+                            }
+                        }
                     }
                 }
             }
+
+            BottomNavBar(currentRoute = "execution", onItemClick = onItemClick)
         }
 
         if (state.isRestTimerRunning) {
@@ -114,6 +125,25 @@ fun WorkoutExecutionScreen(
                 onSetTimer = { viewModel.setRestTimer(it) }
             )
         }
+    }
+}
+
+@Composable
+private fun SessionHeader(session: String) {
+    Surface(
+        color = ElectricBlue.copy(alpha = 0.08f),
+        shape = RoundedCornerShape(8.dp),
+        border = BorderStroke(1.dp, ElectricBlue.copy(alpha = 0.18f)),
+        modifier = Modifier.fillMaxWidth()
+    ) {
+        Text(
+            session.uppercase(),
+            color = ElectricBlue,
+            fontSize = 12.sp,
+            fontWeight = FontWeight.Bold,
+            letterSpacing = 1.5.sp,
+            modifier = Modifier.padding(horizontal = 12.dp, vertical = 8.dp)
+        )
     }
 }
 
@@ -138,9 +168,10 @@ private fun ExerciseCard(
                 onLongClick = onUndo
             ),
         colors = CardDefaults.cardColors(
-            containerColor = if (exercise.isCompleted) SuccessGreen.copy(alpha = 0.1f) else CardSurface
+            containerColor = if (exercise.isCompleted) SuccessGreen.copy(alpha = 0.06f) else CardSurface
         ),
-        shape = RoundedCornerShape(12.dp)
+        shape = RoundedCornerShape(12.dp),
+        border = BorderStroke(1.dp, if (exercise.isCompleted) SuccessGreen.copy(alpha = 0.2f) else DividerColor)
     ) {
         Column(modifier = Modifier.fillMaxWidth().padding(16.dp)) {
             Row(
@@ -153,7 +184,7 @@ private fun ExerciseCard(
                         modifier = Modifier.size(20.dp).clip(CircleShape).background(if (exercise.isCompleted) SuccessGreen else CardSurfaceVariant),
                         contentAlignment = Alignment.Center
                     ) {
-                        if (exercise.isCompleted) Text("\u2713", color = NearBlack, fontSize = 10.sp, fontWeight = FontWeight.Bold)
+                        if (exercise.isCompleted) Text("\u2713", color = CardSurface, fontSize = 10.sp, fontWeight = FontWeight.Bold)
                     }
                     Spacer(Modifier.width(10.dp))
                     Text(exercise.name, color = if (exercise.isCompleted) SuccessGreen else TextPrimary, fontSize = 16.sp, fontWeight = FontWeight.SemiBold, textDecoration = if (exercise.isCompleted) TextDecoration.LineThrough else TextDecoration.None)
@@ -171,6 +202,11 @@ private fun ExerciseCard(
                 }
                 Spacer(Modifier.height(4.dp))
                 Text("Target: $targetDisplay", color = TextSecondary, fontSize = 12.sp)
+            }
+
+            if (!exercise.notes.isNullOrBlank()) {
+                Spacer(Modifier.height(4.dp))
+                Text(exercise.notes, color = TextSecondary, fontSize = 12.sp, lineHeight = 16.sp)
             }
 
             val completedCount = sets.count { it.isCompleted }
@@ -250,7 +286,7 @@ private fun SetRow(set: ExerciseSetLog, onComplete: () -> Unit, onWeightChange: 
                 .clickable(onClick = onComplete),
             contentAlignment = Alignment.Center
         ) {
-            if (set.isCompleted) Text("\u2713", color = NearBlack, fontSize = 14.sp, fontWeight = FontWeight.Bold)
+            if (set.isCompleted) Text("\u2713", color = CardSurface, fontSize = 14.sp, fontWeight = FontWeight.Bold)
         }
     }
 }
@@ -259,13 +295,14 @@ private fun SetRow(set: ExerciseSetLog, onComplete: () -> Unit, onWeightChange: 
 private fun RestTimerOverlay(seconds: Int, onStop: () -> Unit, onSetTimer: (Int) -> Unit) {
     val presets = listOf(30, 60, 90, 120, 180)
     Box(
-        modifier = Modifier.fillMaxSize().background(Color.Black.copy(alpha = 0.7f)).clickable(onClick = {}),
+        modifier = Modifier.fillMaxSize().background(NearBlack.copy(alpha = 0.6f)).clickable(onClick = {}),
         contentAlignment = Alignment.TopEnd
     ) {
         Card(
             modifier = Modifier.padding(16.dp).width(200.dp),
-            colors = CardDefaults.cardColors(containerColor = DarkGray),
-            shape = RoundedCornerShape(16.dp)
+            colors = CardDefaults.cardColors(containerColor = CardSurface),
+            shape = RoundedCornerShape(16.dp),
+            elevation = CardDefaults.cardElevation(defaultElevation = 8.dp)
         ) {
             Column(horizontalAlignment = Alignment.CenterHorizontally, modifier = Modifier.padding(16.dp)) {
                 Text("REST", color = TextSecondary, fontSize = 12.sp, letterSpacing = 2.sp)
@@ -288,7 +325,7 @@ private fun RestTimerOverlay(seconds: Int, onStop: () -> Unit, onSetTimer: (Int)
                             fontWeight = FontWeight.Bold,
                             modifier = Modifier
                                 .clip(RoundedCornerShape(8.dp))
-                                .background(if (seconds == p) ElectricBlue.copy(alpha = 0.2f) else CardSurfaceVariant)
+                                .background(if (seconds == p) ElectricBlue.copy(alpha = 0.12f) else CardSurfaceVariant)
                                 .clickable { onSetTimer(p) }
                                 .padding(horizontal = 12.dp, vertical = 6.dp)
                         )
@@ -300,7 +337,7 @@ private fun RestTimerOverlay(seconds: Int, onStop: () -> Unit, onSetTimer: (Int)
                     colors = ButtonDefaults.buttonColors(containerColor = FailureRed),
                     shape = RoundedCornerShape(8.dp)
                 ) {
-                    Text("STOP", color = TextPrimary, fontWeight = FontWeight.Bold)
+                    Text("STOP", color = CardSurface, fontWeight = FontWeight.Bold)
                 }
             }
         }

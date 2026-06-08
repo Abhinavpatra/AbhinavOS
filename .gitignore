@@ -40,3 +40,5 @@ captures/
 # C++ build outputs
 .externalNativeBuild/
 .cxx/
+workouts.md
+design.md
