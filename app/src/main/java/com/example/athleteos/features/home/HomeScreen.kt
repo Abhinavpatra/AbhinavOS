@@ -83,7 +83,8 @@ fun HomeScreen(
                             onItemClick(NavigationKeys.WorkoutDay)
                         },
                     colors = CardDefaults.cardColors(containerColor = CardSurface),
-                    shape = RoundedCornerShape(16.dp)
+                    shape = RoundedCornerShape(16.dp),
+                    border = BorderStroke(1.dp, ElectricBlue.copy(alpha = 0.3f))
                 ) {
                     Column(modifier = Modifier.padding(20.dp)) {
                         Text(
@@ -146,13 +147,13 @@ fun HomeScreen(
                             Icon(
                                 if (today.isCompleted) Icons.Default.Refresh else Icons.Default.PlayArrow,
                                 contentDescription = null,
-                                tint = NearBlack,
+                                tint = CardSurface,
                                 modifier = Modifier.size(20.dp)
                             )
                             Spacer(Modifier.width(8.dp))
                             Text(
                                 if (today.isCompleted) "REVIEW TODAY" else "START WORKOUT",
-                                color = NearBlack,
+                                color = CardSurface,
                                 fontSize = 15.sp,
                                 fontWeight = FontWeight.Bold
                             )
@@ -264,7 +265,8 @@ private fun QuickNavCard(
             .clip(RoundedCornerShape(12.dp))
             .clickable(onClick = onClick),
         color = CardSurface,
-        shape = RoundedCornerShape(12.dp)
+        shape = RoundedCornerShape(12.dp),
+        border = BorderStroke(1.dp, DividerColor)
     ) {
         Column(
             modifier = Modifier.fillMaxWidth().padding(vertical = 14.dp),
@@ -292,7 +294,7 @@ private fun WeekRow(week: WeekSummary, onClick: () -> Unit) {
     val isCurrent = week.isCurrentWeek
     val isComplete = week.completionPercentage == 100
 
-    val border = if (isCurrent) ElectricBlue.copy(alpha = 0.5f) else CardSurfaceVariant
+    val borderColor = if (isCurrent) ElectricBlue.copy(alpha = 0.4f) else DividerColor
     val accent = when {
         isComplete -> SuccessGreen
         isCurrent -> ElectricBlue
@@ -305,9 +307,9 @@ private fun WeekRow(week: WeekSummary, onClick: () -> Unit) {
             .fillMaxWidth()
             .clip(RoundedCornerShape(12.dp))
             .clickable(onClick = onClick),
-        color = if (isCurrent) CardSurface else Color.Transparent,
+        color = if (isCurrent) ElectricBlue.copy(alpha = 0.04f) else CardSurface,
         shape = RoundedCornerShape(12.dp),
-        border = BorderStroke(1.dp, border)
+        border = BorderStroke(1.dp, borderColor)
     ) {
         Row(
             modifier = Modifier
@@ -319,17 +321,14 @@ private fun WeekRow(week: WeekSummary, onClick: () -> Unit) {
             Row(verticalAlignment = Alignment.CenterVertically) {
                 Text(
                     "Week ${week.weekNumber}",
-                    color = when {
-                        isCurrent || isComplete || week.completionPercentage > 0 -> TextPrimary
-                        else -> TextSecondary
-                    },
+                    color = TextPrimary,
                     fontSize = 18.sp,
                     fontWeight = FontWeight.Bold
                 )
                 if (isCurrent) {
                     Spacer(Modifier.width(8.dp))
                     Surface(
-                        color = ElectricBlue.copy(alpha = 0.2f),
+                        color = ElectricBlue.copy(alpha = 0.12f),
                         shape = RoundedCornerShape(4.dp)
                     ) {
                         Text(
@@ -376,8 +375,9 @@ internal fun BottomNavBar(
     onItemClick: (NavKey) -> Unit
 ) {
     Surface(
-        color = DarkGray,
-        shape = RoundedCornerShape(topStart = 16.dp, topEnd = 16.dp)
+        color = CardSurface,
+        shape = RoundedCornerShape(topStart = 16.dp, topEnd = 16.dp),
+        shadowElevation = 2.dp
     ) {
         Row(
             modifier = Modifier

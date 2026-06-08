@@ -44,8 +44,8 @@ class HomeViewModel @Inject constructor(
 
             val currentWeek = getCurrentWeekNumber()
             val todayDayNumber = getTodayDayNumber()
-            val tomorrowDayNumber = if (todayDayNumber < 7) todayDayNumber + 1 else 1
-            val tomorrowWeek = if (todayDayNumber < 7) currentWeek else currentWeek + 1
+            val tomorrowDayNumber = if (todayDayNumber in 1..6) todayDayNumber + 1 else 1
+            val tomorrowWeek = if (todayDayNumber == 7) currentWeek + 1 else currentWeek
 
             dataRepository.getAllWorkouts().collect { workouts ->
                 if (workouts.isEmpty()) return@collect
@@ -88,22 +88,12 @@ class HomeViewModel @Inject constructor(
 
     fun getTodayDayNumber(): Int {
         val cal = Calendar.getInstance()
-        val dayOfWeek = cal.get(Calendar.DAY_OF_WEEK)
-        return when (dayOfWeek) {
-            Calendar.MONDAY -> 1
-            Calendar.TUESDAY -> 2
-            Calendar.WEDNESDAY -> 3
-            Calendar.THURSDAY -> 4
-            Calendar.FRIDAY -> 5
-            Calendar.SATURDAY -> 6
-            Calendar.SUNDAY -> 7
-            else -> 1
-        }
+        return cal.get(Calendar.DAY_OF_WEEK) // SUNDAY=1, MONDAY=2, ..., SATURDAY=7
     }
 
     private fun getProgramStartDate(): Calendar {
         val cal = Calendar.getInstance()
-        cal.set(Calendar.DAY_OF_WEEK, Calendar.MONDAY)
+        cal.set(Calendar.DAY_OF_WEEK, Calendar.SUNDAY)
         cal.set(Calendar.HOUR_OF_DAY, 0)
         cal.set(Calendar.MINUTE, 0)
         cal.set(Calendar.SECOND, 0)
