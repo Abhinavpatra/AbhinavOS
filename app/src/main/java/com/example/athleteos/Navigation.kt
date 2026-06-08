@@ -57,10 +57,16 @@ fun MainNavigation() {
           )
         }
         entry<NavigationKeys.DailyArmor> {
-          DailyArmorScreen(onBack = { backStack.removeLastOrNull() })
+          DailyArmorScreen(
+            onBack = { backStack.removeLastOrNull() },
+            onItemClick = { key -> backStack.add(key) }
+          )
         }
         entry<NavigationKeys.Metrics> {
-          MetricsScreen(onBack = { backStack.removeLastOrNull() })
+          MetricsScreen(
+            onBack = { backStack.removeLastOrNull() },
+            onItemClick = { key -> backStack.add(key) }
+          )
         }
         entry<NavigationKeys.History> {
           HistoryScreen(
@@ -69,7 +75,10 @@ fun MainNavigation() {
           )
         }
         entry<NavigationKeys.Settings> {
-          SettingsScreen(onBack = { backStack.removeLastOrNull() })
+          SettingsScreen(
+            onBack = { backStack.removeLastOrNull() },
+            onItemClick = { key -> backStack.add(key) }
+          )
         }
       },
   )
