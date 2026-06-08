@@ -356,10 +356,10 @@ Thursday
 Pull
 
 Friday
-Power + Agility
+Power + Athletic Development
 
 Saturday
-Recovery + Stability
+Upper Hypertrophy + Stability
 
 Sunday
 Lower Strength + Jump
@@ -577,29 +577,25 @@ TUESDAY
 
 Push
 
-Weighted Dips
-4x5
+Chest:
+Weighted Dips (4x5)
+Incline Bench Press (4x6)
+Straight Bar Dips (3x10)
+Push Ups (2 sets)
 
-Incline Bench
-4x6
+Shoulders:
+Push Press (5x3)
+Dumbbell Shoulder Press (3x10)
+Lu Raise (3x15)
+Lateral Raise (4x15)
+Face Pull (4x20)
 
-Push Press
-5x3
+Triceps:
+Cable Pushdown (3x12)
+Single Arm Cable Extension (3x12)
 
-DB Shoulder Press
-3x10
-
-Lu Raise
-3x15
-
-Lateral Raise
-4x15
-
-Face Pull
-4x20
-
-Bottoms-Up Hold
-3 Sets
+Stability:
+Bottoms Up Hold (3x30s)
 
 ---
 
@@ -608,29 +604,15 @@ WEDNESDAY
 Conditioning
 
 30s Hard
-
 90s Easy
 
-Week 1:
-8
-
-Week 2:
-10
-
-Week 3:
-12
-
-Week 4:
-12
-
-Week 5:
-10 (40/80)
-
-Week 6:
-12
-
-Week 7:
-14
+Week 1: 8
+Week 2: 10
+Week 3: 12
+Week 4: 12
+Week 5: 10 (40/80)
+Week 6: 12
+Week 7: 14
 
 ---
 
@@ -638,35 +620,34 @@ THURSDAY
 
 Pull
 
-Weighted Pullup
-5x3
+Back Width:
+Weighted Pullups (5x3)
+Lat Pulldown (4x10)
+Gironda Pullups (3 sets)
 
-Barbell Row
-4x6
+Upper Back Thickness:
+Barbell Row (4x6)
+Reeves Shrug (3x12)
 
-Lat Pulldown
-3x10
+Rotator Strength:
+Stahl Rotation (3x15)
 
-Gironda Pullup
-3 Sets
+Biceps:
+Standing Cable Curl (3x12)
+Hammer Curl (3x12)
+Heavy Curl (2x8)
 
-Reeves Shrug
-3x12
-
-Stahl Rotation
-3x15
-
-Hammer Curl
-3x12
-
-Plate Pinch Hold
-3 Sets
+Forearms:
+Reverse EZ Curl (3x15)
+Cable Wrist Flexion (3x20)
+Cable Wrist Extension (3x20)
+Plate Pinch Hold (3 sets)
 
 ---
 
 FRIDAY
 
-Power + Agility
+Power + Athletic Development
 
 Push Press
 5x3
@@ -692,42 +673,25 @@ Pallof Press
 Hanging Leg Raise
 3x12
 
+Toe To Bar
+3x8
+
 ---
 
 SATURDAY
 
-Recovery + Stability
+Upper Hypertrophy + Stability
 
-Zone 2
+Morning:
+Zone 2 (30-45 min)
+Weekly Testing
 
-30-45 min
-
-Y Raise
-3x15
-
-External Rotation
-3x20
-
-Pitcher's Path
-3x15
-
-Wall Raise
-3x15
-
-Face Pull
-3x20
-
-Overhead Hold
-3x30 sec
-
-Jefferson Curl
-3x10
-
-Reverse Hyper
-3x15
-
-Side Bend
-3x15
+Evening:
+Shoulder Growth
+Back
+Lower Back
+Grip
+Stability
 
 ---
 
@@ -774,7 +738,7 @@ Pallof Press
 
 Side Plank
 
-External Rotation
+Cable External Rotation
 
 Pitcher's Path
 
@@ -782,7 +746,7 @@ Neck Flexion
 
 Neck Extension
 
-Side Neck
+Neck Side Flexion
 
 Track completion streak.
 

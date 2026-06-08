@@ -1,552 +1,539 @@
-# ATHLETE PROFILE
-  
-```yaml
-name: Badminton Athletic Development Block
-duration_weeks: 7
+# 7 WEEK BADMINTON ATHLETIC DEVELOPMENT BLOCK
 
-athlete:
-  age: 22
-  height_cm: 178
-  weight_kg: 79
-  bodyfat_percent: 19
+## PRIORITIES
 
-goals:
-  - badminton_performance
-  - acceleration
-  - agility
-  - repeat_sprint_ability
-  - vertical_jump
-  - maintain_strength
-  - increase_back_width
-  - increase_shoulder_size
-  - improve_joint_resilience
-  - reduce_bodyfat
-
-constraints:
-  - desk_job_9_to_5
-  - gym_access
-  - field_access
-  - no_badminton_court
-```
+1. Badminton Performance
+2. Speed & Acceleration
+3. Repeat Sprint Ability
+4. Jump Height
+5. Strength Maintenance / Improvement
+6. Back Width
+7. Shoulder Development
+8. Arm Development
+9. Lower Back Strength
+10. Fat Loss
 
 ---
 
-# TRAINING PHASES
+# WEEKLY STRUCTURE
 
-```yaml
-phase_1:
-  weeks: [1,2]
-  focus:
-    - tissue_preparation
-    - movement_quality
-    - aerobic_reintroduction
+Sunday:
+Lower Strength + Jump
 
-phase_2:
-  weeks: [3,4]
-  focus:
-    - volume_building
-    - sprint_capacity
-    - jump_capacity
+Monday:
+Speed + Agility
 
-phase_3:
-  weeks: [5,6]
-  focus:
-    - maximum_intensity
-    - speed
-    - power
+Tuesday:
+Push (Chest / Shoulders / Triceps)
 
-phase_4:
-  weeks: [7]
-  focus:
-    - performance_peak
-    - fatigue_reduction
-```
+Wednesday:
+Conditioning
 
----
+Thursday:
+Pull (Back / Biceps / Forearms)
 
-# WEEK STRUCTURE
+Friday:
+Power + Athletic Development
 
-```yaml
-sunday:
-  type: lower_strength_jump
-
-monday:
-  type: speed_agility
-
-tuesday:
-  type: push
-
-wednesday:
-  type: conditioning
-
-thursday:
-  type: pull
-
-friday:
-  type: power_agility
-
-saturday:
-  type: recovery_stability
-```
+Saturday:
+Upper Hypertrophy + Stability
 
 ---
 
 # DAILY ARMOR BLOCK
 
-Every single day.
+Perform every day.
 
-```yaml
-daily_armor:
+## Ankles
 
-  ankle:
-    - exercise: tibialis_raise
-      sets: 2
-      reps: 20
+Tibialis Raise
+2x20
 
-    - exercise: single_leg_calf_raise
-      sets: 2
-      reps: 20
+Single Leg Calf Raise
+2x20
 
-  knee:
-    - exercise: spanish_squat_hold
-      sets: 2
-      duration_sec: 45
+## Knees
 
-  core:
-    - exercise: pallof_press
-      sets: 2
-      reps: 15
+Spanish Squat Hold
+2x45 sec
 
-    - exercise: side_plank
-      sets: 2
-      duration_sec: 30
+## Core
 
-  shoulder:
-    - exercise: cable_external_rotation
-      sets: 2
-      reps: 20
+Pallof Press
+2x15
 
-    - exercise: pitchers_path
-      sets: 2
-      reps: 15
+Side Plank
+2x30 sec
 
-  neck:
-    - flexion: 2x20
-    - extension: 2x20
-    - lateral_flexion: 2x15
-```
+## Shoulders
 
----
+Cable External Rotation
+2x20
 
-# SUNDAY — LOWER STRENGTH + JUMP
+Pitcher's Path
+2x15
 
-```yaml
-session: lower_strength_jump
+## Neck
 
-warmup:
-  - ankle_hops
-  - leg_swings
-  - bodyweight_squats
-  - walking_lunges
+Neck Flexion
+2x20
 
-main:
+Neck Extension
+2x20
 
-  back_squat:
-    sets: 5
-    reps: 3
-    intensity: 85_to_90_percent
+Neck Side Flexion
+2x15
 
-  romanian_deadlift:
-    sets: 4
-    reps: 6
-
-  weighted_box_jump:
-    sets: 5
-    reps: 3
-
-  split_rebound_double_switch:
-    sets: 4
-    reps_each_side: 5
-
-  standing_calf_raise:
-    sets: 4
-    reps: 12
-
-  tibialis_raise:
-    sets: 4
-    reps: 20
-
-  weighted_plank:
-    sets: 3
-    duration_sec: 45
-```
+Duration:
+10-15 min
 
 ---
 
-# MONDAY — SPEED + AGILITY
+# SUNDAY
 
-```yaml
-session: speed_agility
+## Evening
 
-warmup:
-  - a_skips
-  - b_skips
-  - high_knees
-  - ankle_hops
-  - leg_swings
+Back Squat
+5x3
 
-acceleration:
+Romanian Deadlift
+4x6
 
-  week_1_2:
-    6x20m
+Weighted Box Jump
+5x3
 
-  week_3_4:
-    8x20m
+Split Rebound Double Switch
+4x5 each side
 
-  week_5_7:
-    10x20m
+Standing Calf Raise
+4x12
 
-rest:
-  full_recovery
+Tibialis Raise
+4x20
 
-speed:
-
-  sprint:
-    sets: 4
-    distance: 40m
-
-agility:
-
-  shuttle_5_10_5:
-    rounds: 6
-
-  lateral_reaction_drill:
-    duration_min: 10
-
-  badminton_shadow:
-    duration_min: 10
-```
+Weighted Plank
+3x45 sec
 
 ---
 
-# TUESDAY — PUSH
+# MONDAY
 
-Uses many exercises already present in your push-day notes. 
+## Morning
 
-```yaml
-session: push
+### Speed
 
-weighted_dips:
-  sets: 4
-  reps: 5
+Weeks 1-2
+6x20m
 
-incline_bench:
-  sets: 4
-  reps: 6
+Weeks 3-4
+8x20m
 
-push_press:
-  sets: 5
-  reps: 3
+Weeks 5-7
+10x20m
 
-dumbbell_shoulder_press:
-  sets: 3
-  reps: 10
+Full recovery
 
-lu_raise:
-  sets: 3
-  reps: 15
+### Sprint
 
-lateral_raise:
-  sets: 4
-  reps: 15
+4x40m
 
-face_pull:
-  sets: 4
-  reps: 20
+### Agility
 
-bottoms_up_hold:
-  sets: 3
-  duration_sec: 30
-```
+5-10-5 Shuttle
+6 rounds
+
+Reaction Drill
+10 min
+
+Badminton Shadow Footwork
+10 min
 
 ---
 
-# WEDNESDAY — CONDITIONING
+# TUESDAY
 
-Based on the interval structure already present in your notes. 
+## Evening
 
-```yaml
-session: conditioning
+### Chest
 
-week_1:
-  intervals: 8
+Weighted Dips
+4x5
 
-week_2:
-  intervals: 10
+Incline Bench Press
+4x6
 
-week_3:
-  intervals: 12
+Straight Bar Dips
+3x10
 
-week_4:
-  intervals: 12
+Push Ups
+2 sets to near failure
 
-week_5:
-  intervals: 10
-  hard_sec: 40
-  easy_sec: 80
+### Shoulders
 
-week_6:
-  intervals: 12
-  hard_sec: 40
-  easy_sec: 80
+Push Press
+5x3
 
-week_7:
-  intervals: 14
-  hard_sec: 40
-  easy_sec: 80
+Dumbbell Shoulder Press
+3x10
 
-modality:
-  - running
-  - treadmill
-  - bike
-```
+Lu Raise
+3x15
 
----
+Lateral Raise
+4x15
 
-# THURSDAY — PULL
+Face Pull
+4x20
 
-Built from your pull-day exercise list. 
+### Triceps
 
-```yaml
-session: pull
+Cable Pushdown
+3x12
 
-weighted_pullup:
-  sets: 5
-  reps: 3
+Single Arm Cable Extension
+3x12
 
-barbell_row:
-  sets: 4
-  reps: 6
+### Stability
 
-lat_pulldown:
-  sets: 3
-  reps: 10
-
-gironda_pullup:
-  sets: 3
-  reps_to_failure_minus_2: true
-
-reeves_shrug:
-  sets: 3
-  reps: 12
-
-stahl_rotation:
-  sets: 3
-  reps: 15
-
-hammer_curl:
-  sets: 3
-  reps: 12
-
-plate_pinch_hold:
-  sets: 3
-  duration_sec: 45
-```
+Bottoms Up Hold
+3x30 sec
 
 ---
 
-# FRIDAY — POWER + AGILITY
+# WEDNESDAY
 
-```yaml
-session: power_day
+## Morning
 
-push_press:
-  sets: 5
-  reps: 3
-  intent: explosive
+Conditioning
 
-broad_jump:
-  sets: 6
-  reps: 2
+Week 1
 
-lateral_bounds:
-  sets: 5
-  reps_each_side: 5
+30 sec hard
+90 sec easy
 
-single_leg_landing:
-  sets: 3
-  reps_each_leg: 8
+x8
 
-pogo_jump:
-  sets: 3
-  reps: 20
+Week 2
 
-single_leg_pogo:
-  sets: 3
-  reps_each_leg: 10
+x10
 
-pallof_press:
-  sets: 3
-  reps: 15
+Week 3
 
-hanging_leg_raise:
-  sets: 3
-  reps: 12
-```
+x12
 
----
+Week 4
 
-# SATURDAY — RECOVERY + STABILITY
+x12
 
-Built from the shoulder-health, spinal, and core work you've collected.  
+Week 5
 
-```yaml
-session: recovery
+40 sec hard
+80 sec easy
 
-zone_2:
-  duration_min: 30_to_45
+x10
 
-y_raise:
-  3x15
+Week 6
 
-external_rotation:
-  3x20
+x12
 
-pitchers_path:
-  3x15
+Week 7
 
-wall_raise:
-  3x15
+x14
 
-face_pull:
-  3x20
+Preferred:
 
-overhead_hold:
-  3x30sec
+Running
 
-jefferson_curl:
-  3x10
+Alternative:
 
-reverse_hyper:
-  3x15
-
-barbell_side_bend:
-  3x15
-```
+Bike
 
 ---
 
-# PERFORMANCE TRACKING
+# THURSDAY
 
-```yaml
-daily:
+## Evening
 
-  bodyweight:
-    unit: kg
+### Back Width
 
-  sleep:
-    unit: hours
+Weighted Pullups
+5x3
 
-  calories:
-    unit: kcal
+Lat Pulldown
+4x10
 
-  protein:
-    unit: grams
+Gironda Pullups
+3 sets
 
-  water:
-    unit: liters
+### Upper Back Thickness
 
-weekly:
+Barbell Row
+4x6
 
-  pullups_max
+Reeves Shrug
+3x12
 
-  weighted_pullup_1rm_est
+### Rotator Strength
 
-  squat_3rm
+Stahl Rotation
+3x15
 
-  vertical_jump_cm
+### Biceps
 
-  broad_jump_cm
+Standing Cable Curl
+3x12
 
-  sprint_20m_sec
+Hammer Curl
+3x12
 
-  resting_heart_rate
+Heavy Curl
+2x8
 
-  morning_energy:
-    scale: 1_to_10
+### Forearms
 
-  soreness:
-    scale: 1_to_10
-```
+Reverse EZ Curl
+3x15
 
----
+Cable Wrist Flexion
+3x20
 
-# AUTO-REGULATION RULES
+Cable Wrist Extension
+3x20
 
-This is the most important section for the app.
-
-```yaml
-if:
-  sleep < 6h
-then:
-  reduce_volume: 20_percent
-
-if:
-  soreness > 8
-then:
-  remove_plyometrics
-
-if:
-  resting_heart_rate:
-    increase: >10_percent
-then:
-  convert_hard_session_to_zone2
-
-if:
-  bodyweight_loss:
-    >1_percent_per_week
-then:
-  increase_calories: 300
-
-if:
-  sprint_time:
-    worsening_2_weeks
-then:
-  reduce_conditioning_volume
-```
+Plate Pinch Hold
+3 sets
 
 ---
 
-# SUCCESS CRITERIA AFTER 7 WEEKS
+# FRIDAY
 
-```yaml
-target:
+## Morning
 
-  weight:
-    75_to_76kg
+### Power Development
 
-  bodyfat:
-    14_to_16_percent
+Push Press
+5x3
 
-  pullups:
-    22_to_25
+Broad Jump
+6x2
 
-  weighted_pullup:
-    25kg_plus
+Lateral Bounds
+5x5 each side
 
-  squat:
-    maintain_or_improve
+Single Leg Landing
+3x8 each leg
 
-  vertical_jump:
-    plus_5cm
+Pogo Jump
+3x20
 
-  sprint_20m:
-    significantly_faster
+Single Leg Pogo
+3x10 each leg
 
-  resting_hr:
-    lower_than_start
+### Core
 
-  subjective:
-    feels_explosive_on_court_movements
-```
+Pallof Press
+3x15
 
+Hanging Leg Raise
+3x12
+
+Toe To Bar
+3x8
+
+---
+
+# SATURDAY
+
+## Morning
+
+Zone 2
+
+30-45 min
+
+Easy pace
+
+---
+
+## Evening
+
+### Shoulder Growth
+
+Y Raise
+3x15
+
+Wall Raise
+3x15
+
+Face Pull
+3x20
+
+Lateral Raise
+4x20
+
+### Back
+
+Behind Neck Pullups
+3x10
+
+### Lower Back
+
+Jefferson Curl
+3x10
+
+Reverse Hyper
+3x15
+
+Good Morning
+3x10
+
+Barbell Side Bend
+3x15
+
+### Grip
+
+Towel Hangs
+3 sets
+
+### Stability
+
+Overhead Hold
+3x30 sec
+
+Spinal Decompression Hang
+3 sets
+
+---
+
+# PHASES
+
+## Weeks 1-2
+
+Foundation
+
+Leave 2-3 reps in reserve
+
+Focus on movement quality
+
+---
+
+## Weeks 3-4
+
+Volume Build
+
+Add load where possible
+
+Add sprint volume
+
+Add conditioning volume
+
+---
+
+## Weeks 5-6
+
+Maximum Intensity
+
+Highest speed
+
+Highest power
+
+Hardest phase
+
+---
+
+## Week 7
+
+Deload
+
+Reduce gym volume by 40%
+
+Keep sprint quality high
+
+Keep jump quality high
+
+Stay explosive
+
+---
+
+# NUTRITION
+
+Protein:
+170-180g
+
+Creatine:
+5g daily
+
+Water:
+4-5L
+
+Calorie Deficit:
+300-500 kcal
+
+---
+
+# RECOVERY
+
+Sleep Goal:
+8 hours
+
+Minimum:
+7 hours
+
+---
+
+# WEEKLY TESTING
+
+Every Saturday Morning
+
+Bodyweight
+
+Resting Heart Rate
+
+Vertical Jump
+
+Broad Jump
+
+20m Sprint
+
+Max Pullups
+
+Energy
+
+Joint Health
+
+Recovery
+
+---
+
+# TARGETS AFTER 7 WEEKS
+
+Weight:
+75-76 kg
+
+Body Fat:
+14-16%
+
+Pullups:
+22-25+
+
+Weighted Pullup:
+25kg+
+
+Vertical Jump:
++5cm
+
+Sprint:
+Significantly Faster
+
+Conditioning:
+Major improvement
+
+Badminton:
+Explosive movement in all directions
+
+Physique:
+Wider Back
+Bigger Shoulders
+Maintained Chest
+Improved Arms
+Stronger Forearms
+Stronger Lower Back
