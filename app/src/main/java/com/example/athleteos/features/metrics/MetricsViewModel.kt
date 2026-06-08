@@ -39,7 +39,7 @@ class MetricsViewModel @Inject constructor(
             dataRepository.getAllMetricLogs().collect { logs ->
                 val categories = mapOf(
                     "BODY" to listOf("Weight", "Body Fat", "Waist"),
-                    "RECOVERY" to listOf("Sleep", "Resting Heart Rate", "Water"),
+                    "RECOVERY" to listOf("Sleep", "Resting Heart Rate"),
                     "STRENGTH" to listOf("Pullups", "Weighted Pullups", "Squat", "Push Press"),
                     "ATHLETICISM" to listOf("Vertical Jump", "Broad Jump", "20m Sprint")
                 )
@@ -86,7 +86,7 @@ class MetricsViewModel @Inject constructor(
 
         val unit = when (metricName) {
             "Weight" -> "kg"; "Body Fat" -> "%"; "Waist" -> "cm"
-            "Sleep" -> "hrs"; "Resting Heart Rate" -> "bpm"; "Water" -> "L"
+            "Sleep" -> "hrs"; "Resting Heart Rate" -> "bpm"
             "Pullups", "Weighted Pullups" -> "reps"; "Squat", "Push Press" -> "kg"
             "Vertical Jump", "Broad Jump" -> "cm"; "20m Sprint" -> "s"
             else -> ""

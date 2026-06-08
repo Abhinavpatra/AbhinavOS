@@ -1,5 +1,6 @@
 package com.example.athleteos.features.metrics
 
+import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -24,18 +25,22 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import androidx.navigation3.runtime.NavKey
+import com.example.athleteos.features.home.BottomNavBar
 import com.example.athleteos.theme.*
 import com.example.athleteos.ui.AppLogo
 
 @Composable
 fun MetricsScreen(
     onBack: () -> Unit,
+    onItemClick: (NavKey) -> Unit,
     viewModel: MetricsViewModel = hiltViewModel()
 ) {
     val state by viewModel.uiState.collectAsStateWithLifecycle()
     var inputValue by remember { mutableStateOf("") }
 
-    Column(modifier = Modifier.fillMaxSize().systemBarsPadding().padding(horizontal = 16.dp).padding(top = 6.dp).verticalScroll(rememberScrollState())) {
+    Column(modifier = Modifier.fillMaxSize().systemBarsPadding()) {
+        Column(modifier = Modifier.weight(1f).verticalScroll(rememberScrollState()).padding(horizontal = 16.dp).padding(top = 6.dp)) {
         Row(verticalAlignment = Alignment.CenterVertically) {
             Text("\u2190", color = ElectricBlue, fontSize = 22.sp, modifier = Modifier.clickable(onClick = onBack).padding(end = 8.dp))
             AppLogo(size = 28.dp)
@@ -48,9 +53,10 @@ fun MetricsScreen(
         val pr = viewModel.getPR()
         if (pr != null) {
             Card(
-                colors = CardDefaults.cardColors(containerColor = WarningAmber.copy(alpha = 0.1f)),
+                colors = CardDefaults.cardColors(containerColor = WarningAmber.copy(alpha = 0.06f)),
                 shape = RoundedCornerShape(12.dp),
-                modifier = Modifier.fillMaxWidth()
+                modifier = Modifier.fillMaxWidth(),
+                border = BorderStroke(1.dp, WarningAmber.copy(alpha = 0.3f))
             ) {
                 Row(modifier = Modifier.padding(12.dp), verticalAlignment = Alignment.CenterVertically) {
                     Text("\u2605", color = WarningAmber, fontSize = 20.sp)
@@ -66,17 +72,22 @@ fun MetricsScreen(
 
         LazyRow(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
             items(state.categoryMetrics.keys.toList()) { category ->
-                Text(
-                    category,
+                Surface(
                     modifier = Modifier
                         .clip(RoundedCornerShape(8.dp))
-                        .background(if (state.selectedCategory == category) ElectricBlue.copy(alpha = 0.2f) else CardSurface)
-                        .clickable { viewModel.selectCategory(category) }
-                        .padding(horizontal = 16.dp, vertical = 8.dp),
-                    color = if (state.selectedCategory == category) ElectricBlue else TextSecondary,
-                    fontSize = 13.sp,
-                    fontWeight = if (state.selectedCategory == category) FontWeight.Bold else FontWeight.Normal
-                )
+                        .clickable { viewModel.selectCategory(category) },
+                    color = if (state.selectedCategory == category) ElectricBlue else CardSurface,
+                    shape = RoundedCornerShape(8.dp),
+                    border = BorderStroke(1.dp, if (state.selectedCategory == category) ElectricBlue else DividerColor)
+                ) {
+                    Text(
+                        category,
+                        modifier = Modifier.padding(horizontal = 16.dp, vertical = 8.dp),
+                        color = if (state.selectedCategory == category) CardSurface else TextSecondary,
+                        fontSize = 13.sp,
+                        fontWeight = if (state.selectedCategory == category) FontWeight.Bold else FontWeight.Normal
+                    )
+                }
             }
         }
 
@@ -85,17 +96,22 @@ fun MetricsScreen(
         val metrics = state.categoryMetrics[state.selectedCategory] ?: emptyList()
         LazyRow(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
             items(metrics) { metric ->
-                Text(
-                    metric,
+                Surface(
                     modifier = Modifier
                         .clip(RoundedCornerShape(8.dp))
-                        .background(if (state.selectedMetric == metric) ElectricBlue.copy(alpha = 0.2f) else CardSurface)
-                        .clickable { viewModel.selectMetric(metric) }
-                        .padding(horizontal = 16.dp, vertical = 8.dp),
-                    color = if (state.selectedMetric == metric) ElectricBlue else TextSecondary,
-                    fontSize = 13.sp,
-                    fontWeight = if (state.selectedMetric == metric) FontWeight.Bold else FontWeight.Normal
-                )
+                        .clickable { viewModel.selectMetric(metric) },
+                    color = if (state.selectedMetric == metric) ElectricBlue else CardSurface,
+                    shape = RoundedCornerShape(8.dp),
+                    border = BorderStroke(1.dp, if (state.selectedMetric == metric) ElectricBlue else DividerColor)
+                ) {
+                    Text(
+                        metric,
+                        modifier = Modifier.padding(horizontal = 16.dp, vertical = 8.dp),
+                        color = if (state.selectedMetric == metric) CardSurface else TextSecondary,
+                        fontSize = 13.sp,
+                        fontWeight = if (state.selectedMetric == metric) FontWeight.Bold else FontWeight.Normal
+                    )
+                }
             }
         }
 
@@ -103,16 +119,21 @@ fun MetricsScreen(
 
         Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
             listOf("7d", "30d", "90d", "all").forEach { range ->
-                Text(
-                    range.uppercase(),
+                Surface(
                     modifier = Modifier
                         .clip(RoundedCornerShape(6.dp))
-                        .background(if (state.selectedTimeRange == range) ElectricBlue.copy(alpha = 0.2f) else CardSurface)
-                        .clickable { viewModel.selectTimeRange(range) }
-                        .padding(horizontal = 12.dp, vertical = 4.dp),
-                    color = if (state.selectedTimeRange == range) ElectricBlue else TextSecondary,
-                    fontSize = 11.sp
-                )
+                        .clickable { viewModel.selectTimeRange(range) },
+                    color = if (state.selectedTimeRange == range) ElectricBlue else CardSurface,
+                    shape = RoundedCornerShape(6.dp),
+                    border = BorderStroke(1.dp, if (state.selectedTimeRange == range) ElectricBlue else DividerColor)
+                ) {
+                    Text(
+                        range.uppercase(),
+                        modifier = Modifier.padding(horizontal = 12.dp, vertical = 4.dp),
+                        color = if (state.selectedTimeRange == range) CardSurface else TextSecondary,
+                        fontSize = 11.sp
+                    )
+                }
             }
         }
 
@@ -121,7 +142,8 @@ fun MetricsScreen(
         Card(
             colors = CardDefaults.cardColors(containerColor = CardSurface),
             shape = RoundedCornerShape(12.dp),
-            modifier = Modifier.fillMaxWidth().height(200.dp)
+            modifier = Modifier.fillMaxWidth().height(200.dp),
+            border = BorderStroke(1.dp, DividerColor)
         ) {
             if (state.metricHistory.isNotEmpty()) {
                 val values = state.metricHistory.map { it.value }
@@ -139,7 +161,8 @@ fun MetricsScreen(
         Card(
             colors = CardDefaults.cardColors(containerColor = CardSurface),
             shape = RoundedCornerShape(12.dp),
-            modifier = Modifier.fillMaxWidth()
+            modifier = Modifier.fillMaxWidth(),
+            border = BorderStroke(1.dp, DividerColor)
         ) {
             Column(modifier = Modifier.padding(16.dp)) {
                 Text("Log ${state.selectedMetric}", color = TextPrimary, fontSize = 16.sp, fontWeight = FontWeight.SemiBold)
@@ -166,12 +189,18 @@ fun MetricsScreen(
                         colors = ButtonDefaults.buttonColors(containerColor = ElectricBlue),
                         shape = RoundedCornerShape(8.dp)
                     ) {
-                        Text("LOG", color = NearBlack, fontWeight = FontWeight.Bold)
+                        Text("LOG", color = CardSurface, fontWeight = FontWeight.Bold)
                     }
                 }
             }
         }
+
+        Spacer(Modifier.height(16.dp))
     }
+
+    BottomNavBar(currentRoute = "metrics", onItemClick = onItemClick)
+}
+
 }
 
 @Composable

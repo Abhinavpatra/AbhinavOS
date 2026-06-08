@@ -34,8 +34,8 @@ class DailyArmorViewModel @Inject constructor(
 
     private val armorItems = listOf(
         "Tibialis Raise", "Single Leg Calf Raise", "Spanish Squat Hold",
-        "Pallof Press", "Side Plank", "External Rotation",
-        "Pitcher's Path", "Neck Flexion", "Neck Extension", "Side Neck"
+        "Pallof Press", "Side Plank", "Cable External Rotation",
+        "Pitcher's Path", "Neck Flexion", "Neck Extension", "Neck Side Flexion"
     )
 
     private val _uiState = MutableStateFlow(DailyArmorUiState())

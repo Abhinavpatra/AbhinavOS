@@ -1,5 +1,6 @@
 package com.example.athleteos.features.armor
 
+import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
@@ -18,90 +19,99 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import androidx.navigation3.runtime.NavKey
+import com.example.athleteos.features.home.BottomNavBar
 import com.example.athleteos.theme.*
 import com.example.athleteos.ui.AppLogo
 
 @Composable
 fun DailyArmorScreen(
     onBack: () -> Unit,
+    onItemClick: (NavKey) -> Unit,
     viewModel: DailyArmorViewModel = hiltViewModel()
 ) {
     val state by viewModel.uiState.collectAsStateWithLifecycle()
 
-    Column(modifier = Modifier.fillMaxSize().systemBarsPadding().padding(horizontal = 16.dp).padding(top = 6.dp)) {
-        Row(verticalAlignment = Alignment.CenterVertically) {
-            Text("\u2190", color = ElectricBlue, fontSize = 22.sp, modifier = Modifier.clickable(onClick = onBack).padding(end = 8.dp))
-            AppLogo(size = 28.dp)
-            Spacer(Modifier.width(10.dp))
-            Text("DAILY ARMOR", color = ElectricBlue, fontSize = 16.sp, fontWeight = FontWeight.Bold, letterSpacing = 4.sp)
-        }
-
-        Spacer(Modifier.height(16.dp))
-
-        Row(
-            modifier = Modifier.fillMaxWidth(),
-            horizontalArrangement = Arrangement.SpaceEvenly
-        ) {
-            StreakBox("CURRENT", state.currentStreak, ElectricBlue)
-            StreakBox("BEST", state.longestStreak, SuccessGreen)
-        }
-
-        Spacer(Modifier.height(20.dp))
-
-        if (state.isTodayCompleted) {
-            Card(
-                colors = CardDefaults.cardColors(containerColor = SuccessGreen.copy(alpha = 0.1f)),
-                shape = RoundedCornerShape(12.dp),
-                modifier = Modifier.fillMaxWidth()
-            ) {
-                Text(
-                    "Today's armor is complete! \u2713",
-                    color = SuccessGreen,
-                    fontSize = 16.sp,
-                    fontWeight = FontWeight.SemiBold,
-                    modifier = Modifier.padding(16.dp)
-                )
+    Column(modifier = Modifier.fillMaxSize().systemBarsPadding()) {
+        Column(modifier = Modifier.weight(1f).padding(horizontal = 16.dp).padding(top = 6.dp)) {
+            Row(verticalAlignment = Alignment.CenterVertically) {
+                Text("\u2190", color = ElectricBlue, fontSize = 22.sp, modifier = Modifier.clickable(onClick = onBack).padding(end = 8.dp))
+                AppLogo(size = 28.dp)
+                Spacer(Modifier.width(10.dp))
+                Text("DAILY ARMOR", color = ElectricBlue, fontSize = 16.sp, fontWeight = FontWeight.Bold, letterSpacing = 4.sp)
             }
-            Spacer(Modifier.height(12.dp))
-        }
 
-        if (state.isLoading) return
+            Spacer(Modifier.height(16.dp))
 
-        LazyColumn(verticalArrangement = Arrangement.spacedBy(8.dp)) {
-            items(state.armorItems) { item ->
+            Row(
+                modifier = Modifier.fillMaxWidth(),
+                horizontalArrangement = Arrangement.SpaceEvenly
+            ) {
+                StreakBox("CURRENT", state.currentStreak, ElectricBlue)
+                StreakBox("BEST", state.longestStreak, SuccessGreen)
+            }
+
+            Spacer(Modifier.height(20.dp))
+
+            if (state.isTodayCompleted) {
                 Card(
-                    modifier = Modifier.fillMaxWidth().clickable { viewModel.toggleItem(item.name) },
-                    colors = CardDefaults.cardColors(
-                        containerColor = if (item.isCompleted) SuccessGreen.copy(alpha = 0.1f) else CardSurface
-                    ),
-                    shape = RoundedCornerShape(12.dp)
+                    colors = CardDefaults.cardColors(containerColor = SuccessGreen.copy(alpha = 0.06f)),
+                    shape = RoundedCornerShape(12.dp),
+                    modifier = Modifier.fillMaxWidth(),
+                    border = BorderStroke(1.dp, SuccessGreen.copy(alpha = 0.3f))
                 ) {
-                    Row(
-                        modifier = Modifier.fillMaxWidth().padding(16.dp),
-                        verticalAlignment = Alignment.CenterVertically
+                    Text(
+                        "Today's armor is complete! \u2713",
+                        color = SuccessGreen,
+                        fontSize = 16.sp,
+                        fontWeight = FontWeight.SemiBold,
+                        modifier = Modifier.padding(16.dp)
+                    )
+                }
+                Spacer(Modifier.height(12.dp))
+            }
+
+            if (state.isLoading) return
+
+            LazyColumn(verticalArrangement = Arrangement.spacedBy(8.dp), modifier = Modifier.weight(1f)) {
+                items(state.armorItems) { item ->
+                    Card(
+                        modifier = Modifier.fillMaxWidth().clickable { viewModel.toggleItem(item.name) },
+                        colors = CardDefaults.cardColors(
+                            containerColor = if (item.isCompleted) SuccessGreen.copy(alpha = 0.06f) else CardSurface
+                        ),
+                        shape = RoundedCornerShape(12.dp),
+                        border = BorderStroke(1.dp, if (item.isCompleted) SuccessGreen.copy(alpha = 0.2f) else DividerColor)
                     ) {
-                        Box(
-                            modifier = Modifier
-                                .size(24.dp)
-                                .clip(CircleShape)
-                                .background(if (item.isCompleted) SuccessGreen else CardSurfaceVariant),
-                            contentAlignment = Alignment.Center
+                        Row(
+                            modifier = Modifier.fillMaxWidth().padding(16.dp),
+                            verticalAlignment = Alignment.CenterVertically
                         ) {
-                            if (item.isCompleted) {
-                                Text("\u2713", color = NearBlack, fontSize = 12.sp, fontWeight = FontWeight.Bold)
+                            Box(
+                                modifier = Modifier
+                                    .size(24.dp)
+                                    .clip(CircleShape)
+                                    .background(if (item.isCompleted) SuccessGreen else CardSurfaceVariant),
+                                contentAlignment = Alignment.Center
+                            ) {
+                                if (item.isCompleted) {
+                                    Text("\u2713", color = CardSurface, fontSize = 12.sp, fontWeight = FontWeight.Bold)
+                                }
                             }
+                            Spacer(Modifier.width(12.dp))
+                            Text(
+                                item.name,
+                                color = if (item.isCompleted) SuccessGreen else TextPrimary,
+                                fontSize = 16.sp,
+                                fontWeight = FontWeight.Medium
+                            )
                         }
-                        Spacer(Modifier.width(12.dp))
-                        Text(
-                            item.name,
-                            color = if (item.isCompleted) SuccessGreen else TextPrimary,
-                            fontSize = 16.sp,
-                            fontWeight = FontWeight.Medium
-                        )
                     }
                 }
             }
         }
+
+        BottomNavBar(currentRoute = "armor", onItemClick = onItemClick)
     }
 }
 
@@ -110,7 +120,8 @@ private fun StreakBox(label: String, value: Int, color: androidx.compose.ui.grap
     Card(
         colors = CardDefaults.cardColors(containerColor = CardSurface),
         shape = RoundedCornerShape(12.dp),
-        modifier = Modifier.width(140.dp)
+        modifier = Modifier.width(140.dp),
+        border = BorderStroke(1.dp, DividerColor)
     ) {
         Column(
             modifier = Modifier.fillMaxWidth().padding(16.dp),
