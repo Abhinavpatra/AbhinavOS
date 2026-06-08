@@ -1,32 +1,32 @@
 package com.example.athleteos.theme
 
-import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.darkColorScheme
+import androidx.compose.material3.lightColorScheme
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.graphics.Color
 
-private val AthleteColorScheme = darkColorScheme(
+private val AthleteColorScheme = lightColorScheme(
     primary = ElectricBlue,
-    onPrimary = NearBlack,
-    primaryContainer = ElectricBlueDark,
-    onPrimaryContainer = TextPrimary,
+    onPrimary = CardSurface,
+    primaryContainer = ElectricBlue.copy(alpha = 0.12f),
+    onPrimaryContainer = ElectricBlueDark,
     secondary = SuccessGreen,
-    onSecondary = NearBlack,
-    secondaryContainer = SuccessGreen.copy(alpha = 0.2f),
+    onSecondary = CardSurface,
+    secondaryContainer = SuccessGreen.copy(alpha = 0.12f),
     onSecondaryContainer = SuccessGreen,
     tertiary = WarningAmber,
-    onTertiary = NearBlack,
-    tertiaryContainer = WarningAmber.copy(alpha = 0.2f),
+    onTertiary = CardSurface,
+    tertiaryContainer = WarningAmber.copy(alpha = 0.12f),
     onTertiaryContainer = WarningAmber,
     error = FailureRed,
-    onError = TextPrimary,
-    errorContainer = FailureRed.copy(alpha = 0.2f),
+    onError = CardSurface,
+    errorContainer = FailureRed.copy(alpha = 0.12f),
     onErrorContainer = FailureRed,
-    background = NearBlack,
+    background = Color(0xFFFAFAFA),
     onBackground = TextPrimary,
-    surface = DarkGray,
+    surface = CardSurface,
     onSurface = TextPrimary,
-    surfaceVariant = CardSurface,
+    surfaceVariant = CardSurfaceVariant,
     onSurfaceVariant = TextSecondary,
     outline = DividerColor,
     outlineVariant = DividerColor
