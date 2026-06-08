@@ -36,6 +36,8 @@ data class ExerciseLog(
     val workoutId: Long,
     val name: String,
     val orderIndex: Int,
+    val session: String = "Session",
+    val notes: String? = null,
     val isCompleted: Boolean = false
 )
 
@@ -86,6 +88,15 @@ data class MetricLog(
 interface AthleteDao {
     @Query("SELECT * FROM workout_log ORDER BY weekNumber, dayNumber")
     fun getAllWorkouts(): Flow<List<WorkoutLog>>
+
+    @Query("SELECT COUNT(*) FROM workout_log")
+    suspend fun getWorkoutCount(): Int
+
+    @Query("SELECT COUNT(*) FROM exercise_log")
+    suspend fun getExerciseCount(): Int
+
+    @Query("SELECT COUNT(*) FROM exercise_set_log")
+    suspend fun getSetCount(): Int
 
     @Query("SELECT * FROM workout_log WHERE weekNumber = :week ORDER BY dayNumber")
     fun getWorkoutsForWeek(week: Int): Flow<List<WorkoutLog>>
@@ -171,7 +182,7 @@ interface AthleteDao {
 
 @Database(
     entities = [WorkoutLog::class, ExerciseLog::class, ExerciseSetLog::class, DailyArmorLog::class, MetricLog::class],
-    version = 1,
+    version = 3,
     exportSchema = false
 )
 abstract class AthleteDatabase : RoomDatabase() {

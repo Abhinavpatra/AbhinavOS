@@ -24,7 +24,9 @@ object DatabaseModule {
             context,
             AthleteDatabase::class.java,
             "athlete_os.db"
-        ).build()
+        )
+            .fallbackToDestructiveMigration(false)
+            .build()
     }
 
     @Provides

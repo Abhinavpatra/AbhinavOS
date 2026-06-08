@@ -51,6 +51,7 @@ data class JsonDay(
 @Serializable
 data class JsonExercise(
     val name: String,
+    val session: String? = null,
     val sets: Int,
     val targetReps: Int? = null,
     val targetWeight: Double? = null,
@@ -91,9 +92,6 @@ class DefaultDataRepository(
     private val json = Json { ignoreUnknownKeys = true }
 
     override suspend fun checkAndSeedDatabase() = withContext(Dispatchers.IO) {
-        val workouts = athleteDao.getAllWorkouts().first()
-        if (workouts.isNotEmpty()) return@withContext
-
         try {
             val inputStream = context.assets.open("program.json")
             val reader = BufferedReader(InputStreamReader(inputStream))
@@ -102,6 +100,15 @@ class DefaultDataRepository(
             inputStream.close()
 
             val program = json.decodeFromString<JsonProgram>(jsonString)
+            val expectedWorkoutCount = program.totalWeeks * program.days.size
+            val expectedExerciseCount = program.totalWeeks * program.days.sumOf { it.exercises.size }
+            val expectedSetCount = program.totalWeeks * program.days.sumOf { day -> day.exercises.sumOf { it.sets } }
+            val workoutCount = athleteDao.getWorkoutCount()
+            val exerciseCount = athleteDao.getExerciseCount()
+            val setCount = athleteDao.getSetCount()
+            if (workoutCount == expectedWorkoutCount && exerciseCount >= expectedExerciseCount && setCount >= expectedSetCount) return@withContext
+
+            athleteDao.clearWorkouts()
 
             val weekKey = { w: Int -> w.toString() }
 
@@ -118,45 +125,36 @@ class DefaultDataRepository(
 
                     val exercises = mutableListOf<ExerciseLog>()
                     for ((index, jsonExercise) in d.exercises.withIndex()) {
-                        val exerciseId = "${workoutId}_${jsonExercise.name}"
+                        val exerciseId = "${workoutId}_${index}_${jsonExercise.name}"
                         exercises.add(
                             ExerciseLog(
                                 id = exerciseId,
                                 workoutId = workoutId,
                                 name = jsonExercise.name,
-                                orderIndex = index
+                                orderIndex = index,
+                                session = jsonExercise.session ?: "Session",
+                                notes = buildExerciseNote(w, d.dayNumber, jsonExercise, program)
                             )
                         )
 
                         // Determine sets count from JSON or week-specific variations
                         val setAmt = when {
                             // Accelerations (day 1, exercise "Accelerations")
-                            d.dayNumber == 1 && jsonExercise.name == "Accelerations" && program.weekSpecific?.accelerations != null ->
+                            d.dayNumber == 2 && jsonExercise.name == "Accelerations" && program.weekSpecific?.accelerations != null ->
                                 program.weekSpecific.accelerations.setsByWeek[weekKey(w)] ?: jsonExercise.sets
-                            // Conditioning (day 3)
-                            d.dayNumber == 3 && program.weekSpecific?.conditioning != null ->
+                            d.dayNumber == 4 && jsonExercise.name == "Interval Conditioning" && program.weekSpecific?.conditioning != null ->
                                 program.weekSpecific.conditioning.intervalsByWeek[weekKey(w)] ?: jsonExercise.sets
                             else -> jsonExercise.sets
                         }
 
                         // Determine conditioning-specific rest seconds and target reps
                         val conditioning = program.weekSpecific?.conditioning
-                        val restSec = if (d.dayNumber == 3 && conditioning != null) {
+                        val restSec = if (d.dayNumber == 4 && jsonExercise.name == "Interval Conditioning" && conditioning != null) {
                             conditioning.easySecByWeek[weekKey(w)] ?: jsonExercise.restSeconds
                         } else {
                             jsonExercise.restSeconds
                         }
-                        val targetRep = if (d.dayNumber == 3) 1 else jsonExercise.targetReps
-
-                        val note = if (d.dayNumber == 1 && jsonExercise.name == "Accelerations" && program.weekSpecific?.accelerations != null) {
-                            program.weekSpecific.accelerations.notesByWeek[weekKey(w)] ?: jsonExercise.notes
-                        } else if (d.dayNumber == 3 && conditioning != null) {
-                            val hard = conditioning.hardSecByWeek[weekKey(w)] ?: 30
-                            val easy = conditioning.easySecByWeek[weekKey(w)] ?: 90
-                            "Week $w: ${setAmt} intervals, ${hard}s/${easy}s"
-                        } else {
-                            jsonExercise.notes
-                        }
+                        val targetRep = if (d.dayNumber == 4 && jsonExercise.name == "Interval Conditioning") 1 else jsonExercise.targetReps
 
                         val sets = mutableListOf<ExerciseSetLog>()
                         for (s in (1..setAmt)) {
@@ -170,13 +168,34 @@ class DefaultDataRepository(
                                 )
                             )
                         }
+                        athleteDao.insertExercises(exercises.takeLast(1))
                         athleteDao.insertSets(sets)
                     }
-                    athleteDao.insertExercises(exercises)
                 }
             }
         } catch (e: Exception) {
             e.printStackTrace()
+        }
+    }
+
+    private fun buildExerciseNote(
+        week: Int,
+        dayNumber: Int,
+        exercise: JsonExercise,
+        program: JsonProgram
+    ): String? {
+        val weekKey = week.toString()
+        return when {
+            dayNumber == 2 && exercise.name == "Accelerations" && program.weekSpecific?.accelerations != null ->
+                program.weekSpecific.accelerations.notesByWeek[weekKey] ?: exercise.notes
+            dayNumber == 4 && exercise.name == "Interval Conditioning" && program.weekSpecific?.conditioning != null -> {
+                val conditioning = program.weekSpecific.conditioning
+                val intervals = conditioning.intervalsByWeek[weekKey] ?: exercise.sets
+                val hard = conditioning.hardSecByWeek[weekKey] ?: 30
+                val easy = conditioning.easySecByWeek[weekKey] ?: 90
+                "Week $week: $intervals intervals, ${hard}s hard / ${easy}s easy. Modalities: running, treadmill, or bike."
+            }
+            else -> exercise.notes
         }
     }
 
