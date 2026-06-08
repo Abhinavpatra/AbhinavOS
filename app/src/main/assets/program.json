@@ -1,115 +1,205 @@
 {
-  "programName": "Badminton Athleticism Block",
-  "totalWeeks": 7,
-  "days": [
-    {
-      "dayNumber": 1,
-      "name": "Speed + Agility",
-      "durationMinutes": 60,
-      "exercises": [
-        { "name": "Warmup", "sets": 1, "targetReps": 1, "targetWeight": null, "restSeconds": 60 },
-        { "name": "Accelerations", "sets": 6, "targetReps": 1, "targetWeight": null, "restSeconds": 90, "notes": "Week 1-2: 6x20m" },
-        { "name": "Sprints", "sets": 4, "targetReps": 1, "targetWeight": null, "restSeconds": 120, "notes": "4x40m" },
-        { "name": "5-10-5 Shuttle", "sets": 6, "targetReps": 1, "targetWeight": null, "restSeconds": 90, "notes": "6 Rounds" },
-        { "name": "Lateral Reaction Drill", "sets": 1, "targetReps": 1, "targetWeight": null, "restSeconds": 60, "notes": "10 min" },
-        { "name": "Shadow Footwork", "sets": 1, "targetReps": 1, "targetWeight": null, "restSeconds": 60, "notes": "10 min" },
-        { "name": "Cooldown", "sets": 1, "targetReps": 1, "targetWeight": null, "restSeconds": 60 }
-      ]
-    },
-    {
-      "dayNumber": 2,
-      "name": "Push",
-      "durationMinutes": 75,
-      "exercises": [
-        { "name": "Weighted Dips", "sets": 4, "targetReps": 5, "targetWeight": 0.0, "restSeconds": 120 },
-        { "name": "Incline Bench", "sets": 4, "targetReps": 6, "targetWeight": 60.0, "restSeconds": 120 },
-        { "name": "Push Press", "sets": 5, "targetReps": 3, "targetWeight": 50.0, "restSeconds": 150 },
-        { "name": "DB Shoulder Press", "sets": 3, "targetReps": 10, "targetWeight": 16.0, "restSeconds": 90 },
-        { "name": "Lu Raise", "sets": 3, "targetReps": 15, "targetWeight": 5.0, "restSeconds": 60 },
-        { "name": "Lateral Raise", "sets": 4, "targetReps": 15, "targetWeight": 10.0, "restSeconds": 60 },
-        { "name": "Face Pull", "sets": 4, "targetReps": 20, "targetWeight": 15.0, "restSeconds": 60 },
-        { "name": "Bottoms-Up Hold", "sets": 3, "targetReps": 1, "targetWeight": 12.0, "restSeconds": 60, "notes": "3 Sets" }
-      ]
-    },
-    {
-      "dayNumber": 3,
-      "name": "Conditioning",
-      "durationMinutes": 45,
-      "exercises": [
-        { "name": "Interval Runs", "sets": 8, "targetReps": 1, "targetWeight": null, "restSeconds": 90, "notes": "Week 1: 8 intervals, 30s/90s" }
-      ]
-    },
-    {
-      "dayNumber": 4,
-      "name": "Pull",
-      "durationMinutes": 75,
-      "exercises": [
-        { "name": "Weighted Pullup", "sets": 5, "targetReps": 3, "targetWeight": 15.0, "restSeconds": 180 },
-        { "name": "Barbell Row", "sets": 4, "targetReps": 6, "targetWeight": 70.0, "restSeconds": 120 },
-        { "name": "Lat Pulldown", "sets": 3, "targetReps": 10, "targetWeight": 50.0, "restSeconds": 90 },
-        { "name": "Gironda Pullup", "sets": 3, "targetReps": 8, "targetWeight": 0.0, "restSeconds": 90, "notes": "To failure -2" },
-        { "name": "Reeves Shrug", "sets": 3, "targetReps": 12, "targetWeight": 40.0, "restSeconds": 90 },
-        { "name": "Stahl Rotation", "sets": 3, "targetReps": 15, "targetWeight": 10.0, "restSeconds": 60 },
-        { "name": "Hammer Curl", "sets": 3, "targetReps": 12, "targetWeight": 12.5, "restSeconds": 60 },
-        { "name": "Plate Pinch Hold", "sets": 3, "targetReps": 1, "targetWeight": 10.0, "restSeconds": 60, "notes": "3 Sets" }
-      ]
-    },
-    {
-      "dayNumber": 5,
-      "name": "Power + Agility",
-      "durationMinutes": 60,
-      "exercises": [
-        { "name": "Push Press", "sets": 5, "targetReps": 3, "targetWeight": 50.0, "restSeconds": 150, "notes": "Explosive intent" },
-        { "name": "Broad Jump", "sets": 6, "targetReps": 2, "targetWeight": null, "restSeconds": 90 },
-        { "name": "Lateral Bounds", "sets": 5, "targetReps": 5, "targetWeight": null, "restSeconds": 90 },
-        { "name": "Single Leg Landing", "sets": 3, "targetReps": 8, "targetWeight": null, "restSeconds": 60 },
-        { "name": "Pogo Jumps", "sets": 3, "targetReps": 20, "targetWeight": null, "restSeconds": 60 },
-        { "name": "Single Leg Pogos", "sets": 3, "targetReps": 10, "targetWeight": null, "restSeconds": 60 },
-        { "name": "Pallof Press", "sets": 3, "targetReps": 15, "targetWeight": 15.0, "restSeconds": 60 },
-        { "name": "Hanging Leg Raise", "sets": 3, "targetReps": 12, "targetWeight": null, "restSeconds": 60 }
-      ]
-    },
-    {
-      "dayNumber": 6,
-      "name": "Recovery + Stability",
-      "durationMinutes": 45,
-      "exercises": [
-        { "name": "Zone 2", "sets": 1, "targetReps": 1, "targetWeight": null, "restSeconds": 60, "notes": "30-45 min" },
-        { "name": "Y Raise", "sets": 3, "targetReps": 15, "targetWeight": 2.5, "restSeconds": 60 },
-        { "name": "External Rotation", "sets": 3, "targetReps": 20, "targetWeight": 5.0, "restSeconds": 60 },
-        { "name": "Pitcher's Path", "sets": 3, "targetReps": 15, "targetWeight": 5.0, "restSeconds": 60 },
-        { "name": "Wall Raise", "sets": 3, "targetReps": 15, "targetWeight": null, "restSeconds": 60 },
-        { "name": "Face Pull", "sets": 3, "targetReps": 20, "targetWeight": 15.0, "restSeconds": 60 },
-        { "name": "Overhead Hold", "sets": 3, "targetReps": 1, "targetWeight": 16.0, "restSeconds": 60, "notes": "3x30 sec" },
-        { "name": "Jefferson Curl", "sets": 3, "targetReps": 10, "targetWeight": 16.0, "restSeconds": 90 },
-        { "name": "Reverse Hyper", "sets": 3, "targetReps": 15, "targetWeight": 0.0, "restSeconds": 60 },
-        { "name": "Side Bend", "sets": 3, "targetReps": 15, "targetWeight": 16.0, "restSeconds": 60 }
-      ]
-    },
-    {
-      "dayNumber": 7,
-      "name": "Lower Strength + Jump",
-      "durationMinutes": 75,
-      "exercises": [
-        { "name": "Back Squat", "sets": 5, "targetReps": 3, "targetWeight": 100.0, "restSeconds": 180, "notes": "85-90%" },
-        { "name": "Romanian Deadlift", "sets": 4, "targetReps": 6, "targetWeight": 80.0, "restSeconds": 120 },
-        { "name": "Weighted Box Jump", "sets": 5, "targetReps": 3, "targetWeight": null, "restSeconds": 90 },
-        { "name": "Split Rebound Double Switch", "sets": 4, "targetReps": 5, "targetWeight": null, "restSeconds": 90 },
-        { "name": "Standing Calf Raise", "sets": 4, "targetReps": 12, "targetWeight": 20.0, "restSeconds": 60 },
-        { "name": "Tibialis Raise", "sets": 4, "targetReps": 20, "targetWeight": null, "restSeconds": 60 },
-        { "name": "Weighted Plank", "sets": 3, "targetReps": 1, "targetWeight": 15.0, "restSeconds": 60, "notes": "3x45s" }
-      ]
+    "programName": "7 Week Badminton Athletic Development Block",
+    "totalWeeks": 7,
+    "days": [
+        {
+            "dayNumber": 1,
+            "name": "Lower Strength + Jump",
+            "durationMinutes": 90,
+            "exercises": [
+                { "session": "Morning - Daily Armor", "name": "Tibialis Raise", "sets": 2, "targetReps": 20, "restSeconds": 30 },
+                { "session": "Morning - Daily Armor", "name": "Single Leg Calf Raise", "sets": 2, "targetReps": 20, "restSeconds": 30 },
+                { "session": "Morning - Daily Armor", "name": "Spanish Squat Hold", "sets": 2, "targetReps": 1, "restSeconds": 45, "notes": "45 seconds each hold." },
+                { "session": "Morning - Daily Armor", "name": "Pallof Press", "sets": 2, "targetReps": 15, "restSeconds": 30 },
+                { "session": "Morning - Daily Armor", "name": "Side Plank", "sets": 2, "targetReps": 1, "restSeconds": 30, "notes": "30 seconds each side." },
+                { "session": "Morning - Daily Armor", "name": "Cable External Rotation", "sets": 2, "targetReps": 20, "restSeconds": 30 },
+                { "session": "Morning - Daily Armor", "name": "Pitcher's Path", "sets": 2, "targetReps": 15, "restSeconds": 30 },
+                { "session": "Morning - Daily Armor", "name": "Neck Flexion", "sets": 2, "targetReps": 20, "restSeconds": 30 },
+                { "session": "Morning - Daily Armor", "name": "Neck Extension", "sets": 2, "targetReps": 20, "restSeconds": 30 },
+                { "session": "Morning - Daily Armor", "name": "Neck Side Flexion", "sets": 2, "targetReps": 15, "restSeconds": 30 },
+                { "session": "Evening - Main Session", "name": "Back Squat", "sets": 5, "targetReps": 3, "restSeconds": 180 },
+                { "session": "Evening - Main Session", "name": "Romanian Deadlift", "sets": 4, "targetReps": 6, "restSeconds": 120 },
+                { "session": "Evening - Main Session", "name": "Weighted Box Jump", "sets": 5, "targetReps": 3, "restSeconds": 90 },
+                { "session": "Evening - Main Session", "name": "Split Rebound Double Switch", "sets": 4, "targetReps": 5, "restSeconds": 90, "notes": "5 each side." },
+                { "session": "Evening - Main Session", "name": "Standing Calf Raise", "sets": 4, "targetReps": 12, "restSeconds": 60 },
+                { "session": "Evening - Main Session", "name": "Tibialis Raise", "sets": 4, "targetReps": 20, "restSeconds": 60 },
+                { "session": "Evening - Main Session", "name": "Weighted Plank", "sets": 3, "targetReps": 1, "restSeconds": 60, "notes": "45 seconds each set." }
+            ]
+        },
+        {
+            "dayNumber": 2,
+            "name": "Speed + Agility",
+            "durationMinutes": 75,
+            "exercises": [
+                { "session": "Morning - Daily Armor", "name": "Tibialis Raise", "sets": 2, "targetReps": 20, "restSeconds": 30 },
+                { "session": "Morning - Daily Armor", "name": "Single Leg Calf Raise", "sets": 2, "targetReps": 20, "restSeconds": 30 },
+                { "session": "Morning - Daily Armor", "name": "Spanish Squat Hold", "sets": 2, "targetReps": 1, "restSeconds": 45, "notes": "45 seconds each hold." },
+                { "session": "Morning - Daily Armor", "name": "Pallof Press", "sets": 2, "targetReps": 15, "restSeconds": 30 },
+                { "session": "Morning - Daily Armor", "name": "Side Plank", "sets": 2, "targetReps": 1, "restSeconds": 30, "notes": "30 seconds each side." },
+                { "session": "Morning - Daily Armor", "name": "Cable External Rotation", "sets": 2, "targetReps": 20, "restSeconds": 30 },
+                { "session": "Morning - Daily Armor", "name": "Pitcher's Path", "sets": 2, "targetReps": 15, "restSeconds": 30 },
+                { "session": "Morning - Daily Armor", "name": "Neck Flexion", "sets": 2, "targetReps": 20, "restSeconds": 30 },
+                { "session": "Morning - Daily Armor", "name": "Neck Extension", "sets": 2, "targetReps": 20, "restSeconds": 30 },
+                { "session": "Morning - Daily Armor", "name": "Neck Side Flexion", "sets": 2, "targetReps": 15, "restSeconds": 30 },
+                { "session": "Morning - Speed", "name": "Accelerations", "sets": 6, "targetReps": 1, "restSeconds": 120, "notes": "Weeks 1-2: 6x20m. Weeks 3-4: 8x20m. Weeks 5-7: 10x20m. Full recovery." },
+                { "session": "Morning - Sprint", "name": "Sprint", "sets": 4, "targetReps": 1, "restSeconds": 150, "notes": "4x40m. Full recovery." },
+                { "session": "Morning - Agility", "name": "5-10-5 Shuttle", "sets": 6, "targetReps": 1, "restSeconds": 90, "notes": "6 rounds." },
+                { "session": "Morning - Agility", "name": "Reaction Drill", "sets": 1, "targetReps": 1, "restSeconds": 60, "notes": "10 minutes." },
+                { "session": "Morning - Agility", "name": "Badminton Shadow Footwork", "sets": 1, "targetReps": 1, "restSeconds": 60, "notes": "10 minutes." }
+            ]
+        },
+        {
+            "dayNumber": 3,
+            "name": "Push",
+            "durationMinutes": 90,
+            "exercises": [
+                { "session": "Morning - Daily Armor", "name": "Tibialis Raise", "sets": 2, "targetReps": 20, "restSeconds": 30 },
+                { "session": "Morning - Daily Armor", "name": "Single Leg Calf Raise", "sets": 2, "targetReps": 20, "restSeconds": 30 },
+                { "session": "Morning - Daily Armor", "name": "Spanish Squat Hold", "sets": 2, "targetReps": 1, "restSeconds": 45, "notes": "45 seconds each hold." },
+                { "session": "Morning - Daily Armor", "name": "Pallof Press", "sets": 2, "targetReps": 15, "restSeconds": 30 },
+                { "session": "Morning - Daily Armor", "name": "Side Plank", "sets": 2, "targetReps": 1, "restSeconds": 30, "notes": "30 seconds each side." },
+                { "session": "Morning - Daily Armor", "name": "Cable External Rotation", "sets": 2, "targetReps": 20, "restSeconds": 30 },
+                { "session": "Morning - Daily Armor", "name": "Pitcher's Path", "sets": 2, "targetReps": 15, "restSeconds": 30 },
+                { "session": "Morning - Daily Armor", "name": "Neck Flexion", "sets": 2, "targetReps": 20, "restSeconds": 30 },
+                { "session": "Morning - Daily Armor", "name": "Neck Extension", "sets": 2, "targetReps": 20, "restSeconds": 30 },
+                { "session": "Morning - Daily Armor", "name": "Neck Side Flexion", "sets": 2, "targetReps": 15, "restSeconds": 30 },
+                { "session": "Evening - Chest", "name": "Weighted Dips", "sets": 4, "targetReps": 5, "restSeconds": 120 },
+                { "session": "Evening - Chest", "name": "Incline Bench Press", "sets": 4, "targetReps": 6, "restSeconds": 120 },
+                { "session": "Evening - Chest", "name": "Straight Bar Dips", "sets": 3, "targetReps": 10, "restSeconds": 90 },
+                { "session": "Evening - Chest", "name": "Push Ups", "sets": 2, "targetReps": 15, "restSeconds": 60, "notes": "Near failure." },
+                { "session": "Evening - Shoulders", "name": "Push Press", "sets": 5, "targetReps": 3, "restSeconds": 150 },
+                { "session": "Evening - Shoulders", "name": "Dumbbell Shoulder Press", "sets": 3, "targetReps": 10, "restSeconds": 90 },
+                { "session": "Evening - Shoulders", "name": "Lu Raise", "sets": 3, "targetReps": 15, "restSeconds": 60 },
+                { "session": "Evening - Shoulders", "name": "Lateral Raise", "sets": 4, "targetReps": 15, "restSeconds": 60 },
+                { "session": "Evening - Shoulders", "name": "Face Pull", "sets": 4, "targetReps": 20, "restSeconds": 60 },
+                { "session": "Evening - Triceps", "name": "Cable Pushdown", "sets": 3, "targetReps": 12, "restSeconds": 60 },
+                { "session": "Evening - Triceps", "name": "Single Arm Cable Extension", "sets": 3, "targetReps": 12, "restSeconds": 60 },
+                { "session": "Evening - Stability", "name": "Bottoms Up Hold", "sets": 3, "targetReps": 1, "restSeconds": 60, "notes": "30 seconds each set." }
+            ]
+        },
+        {
+            "dayNumber": 4,
+            "name": "Conditioning",
+            "durationMinutes": 65,
+            "exercises": [
+                { "session": "Morning - Daily Armor", "name": "Tibialis Raise", "sets": 2, "targetReps": 20, "restSeconds": 30 },
+                { "session": "Morning - Daily Armor", "name": "Single Leg Calf Raise", "sets": 2, "targetReps": 20, "restSeconds": 30 },
+                { "session": "Morning - Daily Armor", "name": "Spanish Squat Hold", "sets": 2, "targetReps": 1, "restSeconds": 45, "notes": "45 seconds each hold." },
+                { "session": "Morning - Daily Armor", "name": "Pallof Press", "sets": 2, "targetReps": 15, "restSeconds": 30 },
+                { "session": "Morning - Daily Armor", "name": "Side Plank", "sets": 2, "targetReps": 1, "restSeconds": 30, "notes": "30 seconds each side." },
+                { "session": "Morning - Daily Armor", "name": "Cable External Rotation", "sets": 2, "targetReps": 20, "restSeconds": 30 },
+                { "session": "Morning - Daily Armor", "name": "Pitcher's Path", "sets": 2, "targetReps": 15, "restSeconds": 30 },
+                { "session": "Morning - Daily Armor", "name": "Neck Flexion", "sets": 2, "targetReps": 20, "restSeconds": 30 },
+                { "session": "Morning - Daily Armor", "name": "Neck Extension", "sets": 2, "targetReps": 20, "restSeconds": 30 },
+                { "session": "Morning - Daily Armor", "name": "Neck Side Flexion", "sets": 2, "targetReps": 15, "restSeconds": 30 },
+                { "session": "Morning - Conditioning", "name": "Interval Conditioning", "sets": 8, "targetReps": 1, "restSeconds": 90, "notes": "Week 1: 30s hard / 90s easy x8. Running preferred; bike if needed." }
+            ]
+        },
+        {
+            "dayNumber": 5,
+            "name": "Pull",
+            "durationMinutes": 90,
+            "exercises": [
+                { "session": "Morning - Daily Armor", "name": "Tibialis Raise", "sets": 2, "targetReps": 20, "restSeconds": 30 },
+                { "session": "Morning - Daily Armor", "name": "Single Leg Calf Raise", "sets": 2, "targetReps": 20, "restSeconds": 30 },
+                { "session": "Morning - Daily Armor", "name": "Spanish Squat Hold", "sets": 2, "targetReps": 1, "restSeconds": 45, "notes": "45 seconds each hold." },
+                { "session": "Morning - Daily Armor", "name": "Pallof Press", "sets": 2, "targetReps": 15, "restSeconds": 30 },
+                { "session": "Morning - Daily Armor", "name": "Side Plank", "sets": 2, "targetReps": 1, "restSeconds": 30, "notes": "30 seconds each side." },
+                { "session": "Morning - Daily Armor", "name": "Cable External Rotation", "sets": 2, "targetReps": 20, "restSeconds": 30 },
+                { "session": "Morning - Daily Armor", "name": "Pitcher's Path", "sets": 2, "targetReps": 15, "restSeconds": 30 },
+                { "session": "Morning - Daily Armor", "name": "Neck Flexion", "sets": 2, "targetReps": 20, "restSeconds": 30 },
+                { "session": "Morning - Daily Armor", "name": "Neck Extension", "sets": 2, "targetReps": 20, "restSeconds": 30 },
+                { "session": "Morning - Daily Armor", "name": "Neck Side Flexion", "sets": 2, "targetReps": 15, "restSeconds": 30 },
+                { "session": "Evening - Back Width", "name": "Weighted Pullups", "sets": 5, "targetReps": 3, "restSeconds": 180 },
+                { "session": "Evening - Back Width", "name": "Lat Pulldown", "sets": 4, "targetReps": 10, "restSeconds": 90 },
+                { "session": "Evening - Back Width", "name": "Gironda Pullups", "sets": 3, "targetReps": 10, "restSeconds": 90 },
+                { "session": "Evening - Upper Back Thickness", "name": "Barbell Row", "sets": 4, "targetReps": 6, "restSeconds": 120 },
+                { "session": "Evening - Upper Back Thickness", "name": "Reeves Shrug", "sets": 3, "targetReps": 12, "restSeconds": 90 },
+                { "session": "Evening - Rotator Strength", "name": "Stahl Rotation", "sets": 3, "targetReps": 15, "restSeconds": 60 },
+                { "session": "Evening - Biceps", "name": "Standing Cable Curl", "sets": 3, "targetReps": 12, "restSeconds": 60 },
+                { "session": "Evening - Biceps", "name": "Hammer Curl", "sets": 3, "targetReps": 12, "restSeconds": 60 },
+                { "session": "Evening - Biceps", "name": "Heavy Curl", "sets": 2, "targetReps": 8, "restSeconds": 90 },
+                { "session": "Evening - Forearms", "name": "Reverse EZ Curl", "sets": 3, "targetReps": 15, "restSeconds": 60 },
+                { "session": "Evening - Forearms", "name": "Cable Wrist Flexion", "sets": 3, "targetReps": 20, "restSeconds": 60 },
+                { "session": "Evening - Forearms", "name": "Cable Wrist Extension", "sets": 3, "targetReps": 20, "restSeconds": 60 },
+                { "session": "Evening - Forearms", "name": "Plate Pinch Hold", "sets": 3, "targetReps": 1, "restSeconds": 60, "notes": "Hold for time." }
+            ]
+        },
+        {
+            "dayNumber": 6,
+            "name": "Power + Athletic Development",
+            "durationMinutes": 70,
+            "exercises": [
+                { "session": "Morning - Daily Armor", "name": "Tibialis Raise", "sets": 2, "targetReps": 20, "restSeconds": 30 },
+                { "session": "Morning - Daily Armor", "name": "Single Leg Calf Raise", "sets": 2, "targetReps": 20, "restSeconds": 30 },
+                { "session": "Morning - Daily Armor", "name": "Spanish Squat Hold", "sets": 2, "targetReps": 1, "restSeconds": 45, "notes": "45 seconds each hold." },
+                { "session": "Morning - Daily Armor", "name": "Pallof Press", "sets": 2, "targetReps": 15, "restSeconds": 30 },
+                { "session": "Morning - Daily Armor", "name": "Side Plank", "sets": 2, "targetReps": 1, "restSeconds": 30, "notes": "30 seconds each side." },
+                { "session": "Morning - Daily Armor", "name": "Cable External Rotation", "sets": 2, "targetReps": 20, "restSeconds": 30 },
+                { "session": "Morning - Daily Armor", "name": "Pitcher's Path", "sets": 2, "targetReps": 15, "restSeconds": 30 },
+                { "session": "Morning - Daily Armor", "name": "Neck Flexion", "sets": 2, "targetReps": 20, "restSeconds": 30 },
+                { "session": "Morning - Daily Armor", "name": "Neck Extension", "sets": 2, "targetReps": 20, "restSeconds": 30 },
+                { "session": "Morning - Daily Armor", "name": "Neck Side Flexion", "sets": 2, "targetReps": 15, "restSeconds": 30 },
+                { "session": "Morning - Power Development", "name": "Push Press", "sets": 5, "targetReps": 3, "restSeconds": 150 },
+                { "session": "Morning - Power Development", "name": "Broad Jump", "sets": 6, "targetReps": 2, "restSeconds": 90 },
+                { "session": "Morning - Power Development", "name": "Lateral Bounds", "sets": 5, "targetReps": 5, "restSeconds": 90, "notes": "5 each side." },
+                { "session": "Morning - Power Development", "name": "Single Leg Landing", "sets": 3, "targetReps": 8, "restSeconds": 60, "notes": "8 each leg." },
+                { "session": "Morning - Power Development", "name": "Pogo Jump", "sets": 3, "targetReps": 20, "restSeconds": 60 },
+                { "session": "Morning - Power Development", "name": "Single Leg Pogo", "sets": 3, "targetReps": 10, "restSeconds": 60, "notes": "10 each leg." },
+                { "session": "Morning - Core", "name": "Pallof Press", "sets": 3, "targetReps": 15, "restSeconds": 60 },
+                { "session": "Morning - Core", "name": "Hanging Leg Raise", "sets": 3, "targetReps": 12, "restSeconds": 60 },
+                { "session": "Morning - Core", "name": "Toe To Bar", "sets": 3, "targetReps": 8, "restSeconds": 60 }
+            ]
+        },
+        {
+            "dayNumber": 7,
+            "name": "Upper Hypertrophy + Stability",
+            "durationMinutes": 80,
+            "exercises": [
+                { "session": "Morning - Daily Armor", "name": "Tibialis Raise", "sets": 2, "targetReps": 20, "restSeconds": 30 },
+                { "session": "Morning - Daily Armor", "name": "Single Leg Calf Raise", "sets": 2, "targetReps": 20, "restSeconds": 30 },
+                { "session": "Morning - Daily Armor", "name": "Spanish Squat Hold", "sets": 2, "targetReps": 1, "restSeconds": 45, "notes": "45 seconds each hold." },
+                { "session": "Morning - Daily Armor", "name": "Pallof Press", "sets": 2, "targetReps": 15, "restSeconds": 30 },
+                { "session": "Morning - Daily Armor", "name": "Side Plank", "sets": 2, "targetReps": 1, "restSeconds": 30, "notes": "30 seconds each side." },
+                { "session": "Morning - Daily Armor", "name": "Cable External Rotation", "sets": 2, "targetReps": 20, "restSeconds": 30 },
+                { "session": "Morning - Daily Armor", "name": "Pitcher's Path", "sets": 2, "targetReps": 15, "restSeconds": 30 },
+                { "session": "Morning - Daily Armor", "name": "Neck Flexion", "sets": 2, "targetReps": 20, "restSeconds": 30 },
+                { "session": "Morning - Daily Armor", "name": "Neck Extension", "sets": 2, "targetReps": 20, "restSeconds": 30 },
+                { "session": "Morning - Daily Armor", "name": "Neck Side Flexion", "sets": 2, "targetReps": 15, "restSeconds": 30 },
+                { "session": "Morning - Zone 2", "name": "Zone 2 Cardio", "sets": 1, "targetReps": 1, "restSeconds": 60, "notes": "30-45 min. Easy pace." },
+                { "session": "Morning - Testing", "name": "Weekly Testing", "sets": 1, "targetReps": 1, "restSeconds": 60, "notes": "Check: BW, RHR, VJ, Broad Jump, 20m Sprint, Max Pullups, Energy, Joint Health, Recovery." },
+                { "session": "Evening - Shoulder Growth", "name": "Y Raise", "sets": 3, "targetReps": 15, "restSeconds": 60 },
+                { "session": "Evening - Shoulder Growth", "name": "Wall Raise", "sets": 3, "targetReps": 15, "restSeconds": 60 },
+                { "session": "Evening - Shoulder Growth", "name": "Face Pull", "sets": 3, "targetReps": 20, "restSeconds": 60 },
+                { "session": "Evening - Shoulder Growth", "name": "Lateral Raise", "sets": 4, "targetReps": 20, "restSeconds": 60 },
+                { "session": "Evening - Back", "name": "Behind Neck Pullups", "sets": 3, "targetReps": 10, "restSeconds": 90 },
+                { "session": "Evening - Lower Back", "name": "Jefferson Curl", "sets": 3, "targetReps": 10, "restSeconds": 60 },
+                { "session": "Evening - Lower Back", "name": "Reverse Hyper", "sets": 3, "targetReps": 15, "restSeconds": 60 },
+                { "session": "Evening - Lower Back", "name": "Good Morning", "sets": 3, "targetReps": 10, "restSeconds": 60 },
+                { "session": "Evening - Lower Back", "name": "Barbell Side Bend", "sets": 3, "targetReps": 15, "restSeconds": 60 },
+                { "session": "Evening - Grip", "name": "Towel Hangs", "sets": 3, "targetReps": 1, "restSeconds": 60, "notes": "Hold for time." },
+                { "session": "Evening - Stability", "name": "Overhead Hold", "sets": 3, "targetReps": 1, "restSeconds": 60, "notes": "30 seconds each set." },
+                { "session": "Evening - Stability", "name": "Spinal Decompression Hang", "sets": 3, "targetReps": 1, "restSeconds": 60, "notes": "Hold for time." }
+            ]
+        }
+    ],
+    "weekSpecific": {
+        "accelerations": {
+            "setsByWeek": { "1": 6, "2": 6, "3": 8, "4": 8, "5": 10, "6": 10, "7": 10 },
+            "notesByWeek": {
+                "1": "Week 1: 6x20m. Full recovery.",
+                "2": "Week 2: 6x20m. Full recovery.",
+                "3": "Week 3: 8x20m. Full recovery.",
+                "4": "Week 4: 8x20m. Full recovery.",
+                "5": "Week 5: 10x20m. Full recovery.",
+                "6": "Week 6: 10x20m. Full recovery.",
+                "7": "Week 7: 10x20m. Full recovery."
+            }
+        },
+        "conditioning": {
+            "intervalsByWeek": { "1": 8, "2": 10, "3": 12, "4": 12, "5": 10, "6": 12, "7": 14 },
+            "hardSecByWeek": { "1": 30, "2": 30, "3": 30, "4": 30, "5": 40, "6": 40, "7": 40 },
+            "easySecByWeek": { "1": 90, "2": 90, "3": 90, "4": 90, "5": 80, "6": 80, "7": 80 }
+        }
     }
-  ],
-  "weekSpecific": {
-    "accelerations": {
-      "setsByWeek": { "1": 6, "2": 6, "3": 8, "4": 8, "5": 10, "6": 10, "7": 10 },
-      "notesByWeek": { "1": "6x20m", "2": "6x20m", "3": "8x20m", "4": "8x20m", "5": "10x20m", "6": "10x20m", "7": "10x20m" }
-    },
-    "conditioning": {
-      "intervalsByWeek": { "1": 8, "2": 10, "3": 12, "4": 12, "5": 10, "6": 12, "7": 14 },
-      "hardSecByWeek": { "1": 30, "2": 30, "3": 30, "4": 30, "5": 40, "6": 40, "7": 40 },
-      "easySecByWeek": { "1": 90, "2": 90, "3": 90, "4": 90, "5": 80, "6": 80, "7": 80 }
-    }
-  }
 }
