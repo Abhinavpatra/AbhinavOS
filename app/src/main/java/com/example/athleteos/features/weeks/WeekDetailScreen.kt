@@ -1,5 +1,6 @@
 package com.example.athleteos.features.weeks
 
+import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.horizontalScroll
@@ -7,6 +8,7 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Home
@@ -23,6 +25,7 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation3.runtime.NavKey
 import com.example.athleteos.NavigationKeys
 import com.example.athleteos.NavigationState
+import com.example.athleteos.core.getCurrentDayInfo
 import com.example.athleteos.database.WorkoutLog
 import com.example.athleteos.features.home.BottomNavBar
 import com.example.athleteos.theme.*
@@ -59,7 +62,7 @@ fun WeekDetailScreen(
             Spacer(Modifier.height(8.dp))
 
             if (!state.isLoading) {
-                Text("Progress: ${state.overallProgress}%", color = TextPrimary, fontSize = 24.sp, fontWeight = FontWeight.Bold)
+                Text("${state.overallProgress}%", color = TextPrimary, fontSize = 32.sp, fontWeight = FontWeight.Bold)
                 Spacer(Modifier.height(6.dp))
                 LinearProgressIndicator(
                     progress = { state.overallProgress / 100f },
@@ -110,22 +113,51 @@ private fun DaySelectorRow(
         horizontalArrangement = Arrangement.spacedBy(8.dp)
     ) {
         val sorted = workouts.sortedBy { it.dayNumber }
+        val currentDay = getCurrentDayInfo()
+
         sorted.forEach { workout ->
+            val isToday = workout.dayNumber == currentDay.dayNumber
             val isComplete = workout.isCompleted
-            val containerColor = if (isComplete) SuccessGreen else CardSurface
-            val contentColor = if (isComplete) NearBlack else TextPrimary
+            val isPast = workout.dayNumber < currentDay.dayNumber
+
+            val containerColor = when {
+                isToday -> ElectricBlue
+                isComplete -> SuccessGreen.copy(alpha = 0.12f)
+                else -> CardSurfaceVariant
+            }
+            val contentColor = when {
+                isToday -> CardSurface
+                isComplete -> SuccessGreen
+                else -> TextPrimary
+            }
+            val borderColor = when {
+                isToday -> ElectricBlue
+                isComplete -> SuccessGreen.copy(alpha = 0.3f)
+                isPast -> DividerColor
+                else -> DividerColor
+            }
 
             Surface(
                 modifier = Modifier
                     .clip(RoundedCornerShape(12.dp))
                     .clickable { onDayClick(workout) },
                 color = containerColor,
-                shape = RoundedCornerShape(12.dp)
+                shape = RoundedCornerShape(12.dp),
+                border = BorderStroke(if (isToday) 0.dp else 1.dp, borderColor)
             ) {
                 Column(
                     modifier = Modifier.padding(horizontal = 18.dp, vertical = 12.dp),
                     horizontalAlignment = Alignment.CenterHorizontally
                 ) {
+                    if (isToday) {
+                        Box(
+                            modifier = Modifier
+                                .size(6.dp)
+                                .clip(CircleShape)
+                                .background(CardSurface)
+                        )
+                        Spacer(Modifier.height(3.dp))
+                    }
                     Text(
                         "Day ${workout.dayNumber}",
                         color = contentColor,
@@ -134,7 +166,7 @@ private fun DaySelectorRow(
                     )
                     Text(
                         getDayName(workout.dayNumber).take(3),
-                        color = if (isComplete) NearBlack.copy(alpha = 0.7f) else TextSecondary,
+                        color = if (isToday) CardSurface.copy(alpha = 0.7f) else if (isComplete) SuccessGreen.copy(alpha = 0.7f) else TextTertiary,
                         fontSize = 11.sp
                     )
                 }
@@ -148,9 +180,10 @@ private fun WorkoutDayCard(workout: WorkoutLog, onClick: () -> Unit) {
     Card(
         modifier = Modifier.fillMaxWidth().clickable(onClick = onClick),
         colors = CardDefaults.cardColors(
-            containerColor = if (workout.isCompleted) SuccessGreen.copy(alpha = 0.1f) else CardSurface
+            containerColor = if (workout.isCompleted) SuccessGreen.copy(alpha = 0.06f) else CardSurface
         ),
-        shape = RoundedCornerShape(12.dp)
+        shape = RoundedCornerShape(12.dp),
+        border = BorderStroke(1.dp, if (workout.isCompleted) SuccessGreen.copy(alpha = 0.2f) else DividerColor)
     ) {
         Row(
             modifier = Modifier.fillMaxWidth().padding(16.dp),
@@ -179,6 +212,4 @@ private fun getDayName(dayNumber: Int): String = when (dayNumber) {
     1 -> "Monday"; 2 -> "Tuesday"; 3 -> "Wednesday"; 4 -> "Thursday"
     5 -> "Friday"; 6 -> "Saturday"; 7 -> "Sunday"; else -> ""
 }
-
-
 

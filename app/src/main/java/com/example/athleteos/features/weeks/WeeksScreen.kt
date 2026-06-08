@@ -1,5 +1,6 @@
 package com.example.athleteos.features.weeks
 
+import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
@@ -31,25 +32,27 @@ fun WeeksScreen(
 ) {
     val state by viewModel.uiState.collectAsStateWithLifecycle()
 
-    Column(modifier = Modifier.fillMaxSize().systemBarsPadding().padding(horizontal = 16.dp).padding(top = 6.dp)) {
-        Row(verticalAlignment = Alignment.CenterVertically) {
-            AppLogo(size = 28.dp)
-            Spacer(Modifier.width(10.dp))
-            Text("WEEKS", color = ElectricBlue, fontSize = 16.sp, fontWeight = FontWeight.Bold, letterSpacing = 4.sp)
-        }
-        Spacer(Modifier.height(20.dp))
+    Column(modifier = Modifier.fillMaxSize().systemBarsPadding()) {
+        Column(modifier = Modifier.weight(1f).padding(horizontal = 16.dp).padding(top = 6.dp)) {
+            Row(verticalAlignment = Alignment.CenterVertically) {
+                AppLogo(size = 28.dp)
+                Spacer(Modifier.width(10.dp))
+                Text("WEEKS", color = ElectricBlue, fontSize = 16.sp, fontWeight = FontWeight.Bold, letterSpacing = 4.sp)
+            }
+            Spacer(Modifier.height(20.dp))
 
-        if (state.isLoading) return
+            if (state.isLoading) return
 
-        LazyColumn(verticalArrangement = Arrangement.spacedBy(10.dp), modifier = Modifier.weight(1f)) {
-            items(state.weeks) { week ->
-                WeekCard(
-                    week = week,
-                    onClick = {
-                        NavigationState.selectedWeekNumber = week.weekNumber
-                        onItemClick(NavigationKeys.WeekDetail)
-                    }
-                )
+            LazyColumn(verticalArrangement = Arrangement.spacedBy(10.dp), modifier = Modifier.weight(1f)) {
+                items(state.weeks) { week ->
+                    WeekCard(
+                        week = week,
+                        onClick = {
+                            NavigationState.selectedWeekNumber = week.weekNumber
+                            onItemClick(NavigationKeys.WeekDetail)
+                        }
+                    )
+                }
             }
         }
 
@@ -62,11 +65,12 @@ private fun WeekCard(week: WeekSummary, onClick: () -> Unit) {
     Card(
         modifier = Modifier.fillMaxWidth().clickable(onClick = onClick),
         colors = CardDefaults.cardColors(
-            containerColor = if (week.completionPercentage == 100) SuccessGreen.copy(alpha = 0.1f)
-            else if (week.isCurrentWeek) ElectricBlue.copy(alpha = 0.1f)
+            containerColor = if (week.completionPercentage == 100) SuccessGreen.copy(alpha = 0.06f)
+            else if (week.isCurrentWeek) ElectricBlue.copy(alpha = 0.04f)
             else CardSurface
         ),
-        shape = RoundedCornerShape(12.dp)
+        shape = RoundedCornerShape(12.dp),
+        border = BorderStroke(1.dp, if (week.isCurrentWeek) ElectricBlue.copy(alpha = 0.3f) else DividerColor)
     ) {
         Row(
             modifier = Modifier.fillMaxWidth().padding(16.dp),
@@ -81,7 +85,8 @@ private fun WeekCard(week: WeekSummary, onClick: () -> Unit) {
             Column(horizontalAlignment = Alignment.End) {
                 Text("${week.completionPercentage}%", color = if (week.completionPercentage == 100) SuccessGreen else TextSecondary, fontSize = 24.sp, fontWeight = FontWeight.Bold)
                 if (week.isCurrentWeek) {
-                    Text("Current", color = ElectricBlue, fontSize = 12.sp)
+                    Spacer(Modifier.height(2.dp))
+                    Text("Current", color = ElectricBlue, fontSize = 12.sp, fontWeight = FontWeight.SemiBold)
                 }
             }
         }
